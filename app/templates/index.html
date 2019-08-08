@@ -15,6 +15,25 @@
 	<link rel="stylesheet" type="text/css" href="{% static '/css/main.css' %}" />
 
 	<style type="text/css">
+  
+    .title {
+      text-align: center;
+    }
+    
+    .description {
+      text-align: center;
+    
+    }
+    
+    .button {
+      text-align: center;
+    }
+    
+    .btn-group {
+      padding-bottom: 50px;
+    }
+    
+    
     
 	</style>
     
@@ -24,22 +43,36 @@
   <div class="container-fluid">
      <div row>
         <div class="col-12">
-          <h1> Welcome to Simplify</h1>
+          <h1 class="title"> Welcome to Simplify</h1>
        </div>
         
     </div>
     
     <div row>
-        <h3> turn complicated text into understandble text for your audience!</h3>
+        <div class="col-12">
+          <h3 class="description"> turn complicated text into understandable text for your audience!</h3>
+        </div>
     </div>
     
     <div row>
-      <p> insert dropdown here </p>
-   
+        <div class="col-12" style="text-align:center;background-color:blue;">
+          <div class="btn-group">
+            <button class="btn btn-secondary btn-lg dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Large button
+            </button>
+            <div class="dropdown-menu">
+              <a class="dropdown-item" href="#">Action</a>
+              <a class="dropdown-item" href="#">Another action</a>
+              <a class="dropdown-item" href="#">Something else here</a>
+            </div>
+          </div>
+        </div>
     </div>
     
     <div row>
-      <p> insert button here </p>
+      <div class="col-12" style="text-align:center;">
+         <button type="button" class="btn btn-secondary">Go to text editor</button>
+      </div>
     </div>
   </div>
   
