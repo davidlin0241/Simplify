@@ -1,0 +1,116 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Simplify</title>
+  
+  <script src="{% static '/vendors/jquery/jquery-3.3.1.min.js' %}"></script>
+	<script src="{% static '/vendors/jquery-ui/jquery-ui.min.js' %}"></script>
+  <script src="{% static '/vendors/popper/popper.min.js' %}"></script>
+  <script src="{% static '/vendors/bootstrap/js/bootstrap.bundle.js' %}"></script>
+
+	<link href="https://fonts.googleapis.com/css?family=Fira+Sans" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="{% static '/vendors/bootstrap/css/bootstrap.css' %}" />
+	<link rel="stylesheet" type="text/css" href="{% static '/css/main.css' %}" />
+
+	<style type="text/css">
+    body, html {
+      padding-top: 0em;
+      height: 100%;
+    }
+    
+    .box {
+      display: flex;
+      height: 97.5%;
+      width: 100%;
+      flex-direction:row;
+      background: gray;
+      justify-content: space-evenly;
+      align-items: stretch;
+      align-content: stretch;
+    }
+    
+    .area {
+      width: 75%;
+      padding-top: 2em;
+      padding-left: 3em;
+      padding-right: 3em;
+      background: white;
+    }
+    
+    .sidebar {
+      width: 23%;
+      background: white;
+    }
+    
+    .highlight {
+      margin: 0px;
+      display:inline;
+      background-color: #fc4c4c;
+    }
+    
+    
+	</style>
+
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light" style="padding-top: 0em;">
+  <a class="navbar-brand" href="#">Simplify</a>
+    <div class="dropdown">
+    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      Dropdown button
+    </button>
+    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+      <a class="dropdown-item" href="#">Action</a>
+      <a class="dropdown-item" href="#">Another action</a>
+      <a class="dropdown-item" href="#">Something else here</a>
+    </div>
+    </div>
+  </nav>
+  <div class="box">
+    <div class="area">
+      "Lorem ipsum dolor sit amet, <p class="highlight">124345</p> consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+    </div>
+    <div class="sidebar container">
+      <div class="row align-items-center" style="height:10%;border-bottom:2px solid black;">
+        <div class="col">
+          <button class="btn btn-primary">
+            Previous
+          </button>
+        </div>
+        <div class="col" align="right">
+          <button class="btn btn-primary">
+            Next
+          </button>
+        </div>
+      </div>
+      <div class="row" style="height:10%;">
+        <div class="col" id="original">
+          Original Word Here
+        </div>
+      </div>
+      <div class="row" style="height:10%;">
+        <div class="col">
+          Suggestions:
+        </div>
+      </div>
+      <div class="row" style="height:60%;">
+        <ul>
+          <li id="s1">Suggestion 1</li>
+          <li id="s2">Suggestion 2</li>
+        </ul>
+      </div>
+      <div class="row" style="height:10%;border-top:2px solid black">
+        Filter Here
+      </div>
+    </div>
+  </div>
+</body>
+<script>
+  
+</script>
+</html>

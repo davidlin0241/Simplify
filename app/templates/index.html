@@ -7,19 +7,74 @@
   
   <script src="{% static '/vendors/jquery/jquery-3.3.1.min.js' %}"></script>
 	<script src="{% static '/vendors/jquery-ui/jquery-ui.min.js' %}"></script>
+  <script src="{% static '/vendors/popper/popper.min.js' %}"></script>
+  <script src="{% static '/vendors/bootstrap/js/bootstrap.bundle.js' %}"></script>
 
 	<link href="https://fonts.googleapis.com/css?family=Fira+Sans" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="{% static '/vendors/bootstrap/css/bootstrap.css' %}" />
 	<link rel="stylesheet" type="text/css" href="{% static '/css/main.css' %}" />
 
 	<style type="text/css">
+  
+    .title {
+      text-align: center;
+    }
+    
+    .description {
+      text-align: center;
+    
+    }
+    
+    .button {
+      text-align: center;
+    }
+    
+    .btn-group {
+      padding-bottom: 50px;
+    }
+    
+    
+    
 	</style>
-
+    
 </head>
 
 <body>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <a class="navbar-brand" href="#">Simplify</a>
-</nav>
+  <div class="container-fluid">
+     <div row>
+        <div class="col-12">
+          <h1 class="title"> Welcome to Simplify</h1>
+       </div>
+        
+    </div>
+    
+    <div row>
+        <div class="col-12">
+          <h3 class="description"> turn complicated text into understandable text for your audience!</h3>
+        </div>
+    </div>
+    
+    <div row>
+        <div class="col-12" style="text-align:center;background-color:blue;">
+          <div class="btn-group">
+            <button class="btn btn-secondary btn-lg dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Large button
+            </button>
+            <div class="dropdown-menu">
+              <a class="dropdown-item" href="#">Action</a>
+              <a class="dropdown-item" href="#">Another action</a>
+              <a class="dropdown-item" href="#">Something else here</a>
+            </div>
+          </div>
+        </div>
+    </div>
+    
+    <div row>
+      <div class="col-12" style="text-align:center;">
+         <button type="button" class="btn btn-secondary">Go to text editor</button>
+      </div>
+    </div>
+  </div>
+  
 </body>
 </html>
