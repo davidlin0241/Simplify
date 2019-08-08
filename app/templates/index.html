@@ -7,19 +7,36 @@
   
   <script src="{% static '/vendors/jquery/jquery-3.3.1.min.js' %}"></script>
 	<script src="{% static '/vendors/jquery-ui/jquery-ui.min.js' %}"></script>
+  <script src="{% static '/vendors/popper/popper.min.js' %}"></script>
+  <script src="{% static '/vendors/bootstrap/js/bootstrap.bundle.js' %}"></script>
 
 	<link href="https://fonts.googleapis.com/css?family=Fira+Sans" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="{% static '/vendors/bootstrap/css/bootstrap.css' %}" />
 	<link rel="stylesheet" type="text/css" href="{% static '/css/main.css' %}" />
 
 	<style type="text/css">
+    body, html {
+      padding-top: 0em;
+    }
 	</style>
 
 </head>
 
 <body>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light" style="padding-top: 0em;">
   <a class="navbar-brand" href="#">Simplify</a>
-</nav>
+    <div class="dropdown">
+    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      Dropdown button
+    </button>
+    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+      <a class="dropdown-item" href="#">Action</a>
+      <a class="dropdown-item" href="#">Another action</a>
+      <a class="dropdown-item" href="#">Something else here</a>
+    </div>
+    </div>
+  </nav>
+  </div>
+    
 </body>
 </html>
