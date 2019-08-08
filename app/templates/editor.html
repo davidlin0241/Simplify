@@ -17,7 +17,40 @@
 	<style type="text/css">
     body, html {
       padding-top: 0em;
+      height: 100%;
     }
+    
+    .box {
+      display: flex;
+      height: 97.5%;
+      width: 100%;
+      flex-direction:row;
+      background: orange;
+      justify-content: space-evenly;
+      align-items: stretch;
+      align-content: stretch;
+    }
+    
+    .area {
+      width: 75%;
+      padding-top: 2em;
+      padding-left: 3em;
+      padding-right: 3em;
+      background: white;
+    }
+    
+    .sidebar {
+      width: 23%;
+      background: white;
+    }
+    
+    .highlight {
+      margin: 0px;
+      display:inline;
+      background-color: #fc4c4c;
+    }
+    
+    
 	</style>
 
 </head>
@@ -36,5 +69,41 @@
     </div>
     </div>
   </nav>
+  <div class="box">
+    <div class="area">
+      "Lorem ipsum dolor sit amet, <p class="highlight">124345</p> consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+    </div>
+    <div class="sidebar container">
+      <div class="row" style="height:10%;border-bottom:2px solid black;">
+        <div class="col">
+          Previous
+        </div>
+        <div class="col">
+          Next
+        </div>
+      </div>
+      <div class="row" style="height:10%;border:2px solid black">
+        <div class="col" id="original">
+          Original Word Here
+        </div>
+      </div>
+      <div class="row" style="height:10%;border: 2px solid black">
+        <div class="col">
+          Suggestions:
+        </div>
+      </div>
+      <div class="row" style="height:60%;border: 2px solid black">
+        <ul>
+          <li id="s1">Suggestion 1</li>
+          <li id="s2">Suggestion 2</li>
+        </ul>
+      </div>
+      <div class="row" style="height:10%;border: 2px solid black">
+        Filter Here
+      </div>
+    </div>
+  </div>
 </body>
 </html>
