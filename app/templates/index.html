@@ -3,133 +3,23 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Touch Gestures Prototype</title>
+	<title>Simplify</title>
+  
+  <script src="{% static '/vendors/jquery/jquery-3.3.1.min.js' %}"></script>
+	<script src="{% static '/vendors/jquery-ui/jquery-ui.min.js' %}"></script>
 
 	<link href="https://fonts.googleapis.com/css?family=Fira+Sans" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="{% static '/vendors/bootstrap/css/bootstrap.css' %}" />
 	<link rel="stylesheet" type="text/css" href="{% static '/css/main.css' %}" />
 
-	<script src="{% static '/vendors/jquery/jquery-3.3.1.min.js' %}"></script>
-	<script src="{% static '/vendors/jquery-ui/jquery-ui.min.js' %}"></script>
-	<script src="{% static '/vendors/hammer/hammer.min.js' %}"></script>
-	<script src="{% static '/vendors/hammer/jquery.hammer.js' %}"></script>
-
-	<meta name="viewport" content="width=device-width, initial-scale=1" />
-	<meta name="viewport" content="width=device-width, user-scalable=no" />
-
 	<style type="text/css">
-		body {
-			margin:0;
-			padding:0;
-		}
-
-		.box-container {
-			display: flex;
-			flex-wrap: wrap;
-		}
-
-		.large-box {
-			width: 100%;
-			height: 300px;
-			background: #0d124a;
-			padding: 5px;
-			margin: 0 10px 10px 0;
-			display: flex;
-			align-items: center;
-			justify-content: center;
-		}
-
-		.small-box {
-			width: 100px;
-			height: 100px;
-			background: #7ce6df;
-			display: flex;
-			align-items: center;
-			justify-content: center;
-		}
-
-		.action-complete {
-			background: #ffffff;
-		}
 	</style>
 
 </head>
 
 <body>
-	<div class="container-fluid">
-		<div class="row">
-			<div class="col-12">
-				<h3>Task 4</h3>
-				<div class="box-container">
-					<div class="large-box">
-						<div class="small-box" id="rotate-box">Rotate</div>
-					</div>
-					<div class="large-box">
-						<div class="small-box" id="pinch-box">Pinch</div>
-					</div>
-					<div class="large-box">
-						<div class="small-box" id="press-box">Press</div>
-					</div>
-					<div class="large-box" id="pan-big">
-						<div class="small-box" id="pan-box">Pan</div>
-					</div>
-					<div class="large-box">
-						<div class="small-box" id="tap-box">Tap</div>
-					</div>
-					<div class="large-box">
-						<div class="small-box" id="swipe-box">Swipe</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<script>
-    var roBox = document.getElementById('rotate-box');
-	  var ro = new Hammer(roBox);
-    ro.get('rotate').set({enable: true, threshold : 15});
-    ro.on("rotatemove", function() {
-      $('#rotate-box').css('background', 'green');
-    });
-    var pBox = document.getElementById('pinch-box');
-    var p = new Hammer(pBox);
-    p.get("pinch").set({enable : true});
-    p.on("pinchout", function() {
-      $('#pinch-box').css("width", "200px");
-      $('#pinch-box').css("height", "200px");
-    });
-    p.on("pinchin", function() {
-       $('#pinch-box').css("width", "100px");
-       $('#pinch-box').css("height", "100px");
-    });
-    var prBox = document.getElementById('press-box');
-    var pr = new Hammer(prBox);
-    pr.on("press", function() {
-      $("#press-box").css("background", "red");
-    });
-    var paBox = document.getElementById('pan-box');
-    var pa = new Hammer(paBox);
-    pa.on("panup", function() {
-      $("#pan-big").css("align-items", "flex-start");
-    });
-    pa.on("panleft", function() {
-      $("#pan-big").css("justify-content", "flex-start");
-    })
-    pa.on("panright", function() {
-      $("#pan-big").css("justify-content", "flex-end");
-    });
-    pa.on("pandown", function() {
-      $("#pan-big").css("align-items", "flex-end");
-    });
-    var tBox = document.getElementById('tap-box');
-    var t = new Hammer(tBox);
-    t.on("tap", function() {
-      $("#tap-box").css("background", "yellow");
-    });
-    var sBox = document.getElementById('swipe-box');
-    var s = new Hammer(sBox);
-    s.on("swipe", function() {
-      $("#swipe-box").css("width", "200px");
-    });
-  </script>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand" href="#">Simplify</a>
+</nav>
 </body>
 </html>
