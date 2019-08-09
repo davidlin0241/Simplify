@@ -22,13 +22,14 @@
     
     .box {
       display: flex;
-      height: 97.5%;
+      height: 94%;
       width: 100%;
       flex-direction:row;
-      background: gray;
+      background: #b9f6ca;
       justify-content: space-evenly;
       align-items: stretch;
       align-content: stretch;
+      padding:1em;
     }
     
     .area {
@@ -50,14 +51,18 @@
       background-color: #fc4c4c;
     }
     
+    .navbar {
+      background-color: #00695c;
+    }
+    
     
 	</style>
 
 </head>
 
 <body>
-  <nav class="navbar navbar-expand-lg navbar-light bg-light" style="padding-top: 0em;">
-  <a class="navbar-brand" href="#">Simplify</a>
+  <nav class="navbar navbar-expand-lg navbar-dark" style="padding-top: 0em;">
+    <img src = "{% static 'logo-white.png' %}" style="padding-top:5px;"></img>
     <div class="dropdown">
     <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
       Dropdown button
@@ -88,8 +93,8 @@
           </button>
         </div>
       </div>
-      <div class="row" style="height:10%;">
-        <div class="col" id="original">
+      <div class="row align-items-center" style="height:10%;">
+        <div class="col" align="center" id="original">
           Original Word Here
         </div>
       </div>
@@ -99,10 +104,12 @@
         </div>
       </div>
       <div class="row" style="height:60%;">
-        <ul>
+        <div class="col" align="center">
+          <ul>
           <li id="s1">Suggestion 1</li>
           <li id="s2">Suggestion 2</li>
-        </ul>
+          </ul>
+        </div>
       </div>
       <div class="row" style="height:10%;border-top:2px solid black">
         Filter Here

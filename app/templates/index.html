@@ -18,6 +18,7 @@
   
     .title {
       text-align: center;
+      font-size: 100px;
     }
     
     .description {
@@ -25,15 +26,11 @@
     
     }
     
-    .button {
+    .center-btns {
       text-align: center;
-    }
-    
-    .btn-group {
+      padding-top: 50px;
       padding-bottom: 50px;
     }
-    
-    
     
 	</style>
     
@@ -55,26 +52,54 @@
     </div>
     
     <div row>
-        <div class="col-12" style="text-align:center;background-color:blue;">
+        <div class="col-12 center-btns">
           <div class="btn-group">
             <button class="btn btn-secondary btn-lg dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Large button
+              <p>
+                Please select an audience
+              </p>
+                 
+              
             </button>
             <div class="dropdown-menu">
-              <a class="dropdown-item" href="#">Action</a>
-              <a class="dropdown-item" href="#">Another action</a>
-              <a class="dropdown-item" href="#">Something else here</a>
+              <a class="dropdown-item" id="first" href="#">Elementary Children</a>
+              <a class="dropdown-item" id="second" href="#">General Public</a>
             </div>
           </div>
         </div>
     </div>
     
     <div row>
-      <div class="col-12" style="text-align:center;">
-         <button type="button" class="btn btn-secondary">Go to text editor</button>
+      <div class="col-12 center-btns">
+         <button type="button" class="btn btn-secondary" id="textEd-btn">Go to text editor</button>
+      </div>
+    </div>
+    
+     <div row>
+      <div class="col-12" style="text-align: center">
+        <h4> Select an audience, and then click on "Go to text editor" </h4>
       </div>
     </div>
   </div>
   
 </body>
+  
+  <script type="text/javascript">
+    
+    $(document).ready(function() {
+
+      document.getElementById("textEd-btn").onclick = function () {
+            location.href = "https://cs160finalprojectgroup8-brendanleahy778216.codeanyapp.com/editor";
+        };
+      
+      $('#first').on('click', function() {
+        $('#item0').text('Elementary Children');
+      });
+
+      $('#second').on('click', function() {
+        $('#item0').text('General Public');
+      });
+    });
+
+</script>
 </html>
