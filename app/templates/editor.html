@@ -22,10 +22,10 @@
     
     .box {
       display: flex;
-      height: 94%;
+      height: 92%;
       width: 100%;
       flex-direction:row;
-      background: #b9f6ca;
+      background: #;
       justify-content: space-evenly;
       align-items: stretch;
       align-content: stretch;
@@ -49,11 +49,20 @@
       margin: 0px;
       display:inline;
       background-color: #fc4c4c;
+      cursor: pointer;
+    }
+    
+    .suggestion {
+      cursor:pointer;
     }
     
     .navbar {
-      background-color: #00695c;
+      background-color: #14cba8;
     }
+    
+    .nav-item {
+      padding: 1em;
+     }
     
     
 	</style>
@@ -62,17 +71,26 @@
 
 <body>
   <nav class="navbar navbar-expand-lg navbar-dark" style="padding-top: 0em;">
-    <img src = "{% static 'logo-white.png' %}" style="padding-top:5px;"></img>
-    <div class="dropdown">
-    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-      Dropdown button
+    <img class="navbar-brand" src = "{% static 'logo-white.png' %}" style="padding-top:5px;"></img>
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <div class="dropdown">
+          <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Dropdown button
+          </button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <a class="dropdown-item" href="#">Action</a>
+            <a class="dropdown-item" href="#">Another action</a>
+            <a class="dropdown-item" href="#">Something else here</a>
+          </div>
+        </div>
+      </li>
+      <li class="nav-item active">Undo Here</li>
+      <li class="nav-item active">Redo Here</li>
+    </ul>
+    <button class="btn btn-primary">
+      Help
     </button>
-    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-      <a class="dropdown-item" href="#">Action</a>
-      <a class="dropdown-item" href="#">Another action</a>
-      <a class="dropdown-item" href="#">Something else here</a>
-    </div>
-    </div>
   </nav>
   <div class="box">
     <div class="area">
@@ -104,10 +122,10 @@
         </div>
       </div>
       <div class="row" style="height:60%;">
-        <div class="col" align="center">
-          <ul>
-          <li id="s1">Suggestion 1</li>
-          <li id="s2">Suggestion 2</li>
+        <div class="col">
+          <ul style="margin:0;padding:0;list-style-type:none;text-align:center;">
+          <li id="s1" class="suggestion">Suggestion 1</li>
+          <li id="s2" class="suggestion">Suggestion 2</li>
           </ul>
         </div>
       </div>
