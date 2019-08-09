@@ -98,12 +98,14 @@
     </div>
   </div>
   
+  <form action="/editor" method="get" id="f">
+  </form>
 </body>
   
   <script type="text/javascript">
-    console.log($('#default').text())
     
     $(document).ready(function() {
+      
       
       
       //var audienceSelected = 0; 
@@ -116,7 +118,9 @@
               location.href = "https://cs160finalprojectgroup8-brendanleahy778216.codeanyapp.com/editor";
             }
             */
-            location.href = "https://cs160finalprojectgroup8-brendanleahy778216.codeanyapp.com/editor";
+            /* location.href = "https://cs160finalprojectgroup8-brendanleahy778216.codeanyapp.com/editor"; */
+            $('#f').append('<input type="text" name="audience" value=' + document.getElementById("f").innerHTML + '> ');
+            $('#f').submit();
         };
       
       
