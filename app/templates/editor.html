@@ -13,6 +13,7 @@
 	<link href="https://fonts.googleapis.com/css?family=Fira+Sans" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="{% static '/vendors/bootstrap/css/bootstrap.css' %}" />
 	<link rel="stylesheet" type="text/css" href="{% static '/css/main.css' %}" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
 	<style type="text/css">
     body, html {
@@ -85,8 +86,12 @@
           </div>
         </div>
       </li>
-      <li class="nav-item active">Undo Here</li>
-      <li class="nav-item active">Redo Here</li>
+      <li class="nav-item active" style="padding-left:20em;">
+        <i class="material-icons" style="cursor:pointer;">undo</i>
+      </li>
+      <li class="nav-item active">
+        <i class="material-icons" style="cursor:pointer">redo</i>
+      </li>
     </ul>
     <button class="btn btn-primary">
       Help

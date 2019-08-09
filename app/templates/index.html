@@ -71,9 +71,7 @@
         <div class="col-12 center-btns">
           <div class="btn-group">
             <button class="btn btn-secondary btn-lg dropdown-toggle" id="default" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              General Public
-              <div style="margin: 3px; margin-right:0px"> Select an audience </div>
-             
+              Please select an audience
             </button>
             <div class="dropdown-menu">
               <a class="dropdown-item" id="first" href="#">Children</a>
@@ -107,29 +105,34 @@
     
     $(document).ready(function() {
       
-      var audienceSelected = 0; 
+      
+      //var audienceSelected = 0; 
       
       document.getElementById("textEd-btn").onclick = function () {
+           /*
            if(audienceSelected == 0){ //check if select got any value
               alert( "Please select an audience first.");
             } else {
               location.href = "https://cs160finalprojectgroup8-brendanleahy778216.codeanyapp.com/editor";
             }
+            */
+            location.href = "https://cs160finalprojectgroup8-brendanleahy778216.codeanyapp.com/editor";
         };
+      
       
       $('#first').on('click', function() {
         $('#default').text('Children');
-        audienceSelected = 1; 
+        //audienceSelected = 1; 
       });
 
       $('#second').on('click', function() {
         $('#default').text('Teenagers');
-        audienceSelected = 1; 
+        //audienceSelected = 1; 
       });
       
       $('#third').on('click', function() {
         $('#default').text('General Public');
-        audienceSelected = 1; 
+        //audienceSelected = 1; 
       });
     });
 

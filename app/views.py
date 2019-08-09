@@ -6,3 +6,6 @@ def index(request):
   
 def editor(request):
   return render(request, 'editor.html')
+
+def home(request):
+  return render(request, 'home.html')
