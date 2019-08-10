@@ -9,11 +9,13 @@
 	<script src="{% static '/vendors/jquery-ui/jquery-ui.min.js' %}"></script>
   <script src="{% static '/vendors/popper/popper.min.js' %}"></script>
   <script src="{% static '/vendors/bootstrap/js/bootstrap.bundle.js' %}"></script>
+  <script src="https://kit.fontawesome.com/a076d05399.js"></script>
 
 	<link href="https://fonts.googleapis.com/css?family=Fira+Sans" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="{% static '/vendors/bootstrap/css/bootstrap.css' %}" />
 	<link rel="stylesheet" type="text/css" href="{% static '/css/main.css' %}" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 	<style type="text/css">
     body, html {
@@ -26,11 +28,12 @@
       height: 91%;
       width: 100%;
       flex-direction:row;
-      background: gray;
+      background: #39796b;
       justify-content: space-evenly;
       align-items: stretch;
       align-content: stretch;
       padding:1em;
+      
     }
     
     .area {
@@ -39,18 +42,44 @@
       padding-left: 3em;
       padding-right: 3em;
       background: white;
+      border-radius: 9px;
     }
     
     .sidebar {
       width: 23%;
       background: white;
+      border-radius: 9px;
+      
     }
     
-    .highlight {
+    .first-priority {
       margin: 0px;
       display:inline;
-      background-color: #fc4c4c;
+      
       cursor: pointer;
+      border-radius: 8px;
+      padding: 3px;
+      background-color: red;
+    }
+    
+    .second-priority {
+      margin: 0px;
+      display:inline;
+      
+      cursor: pointer;
+      border-radius: 8px;
+      padding: 3px;
+      background-color: orange;
+    }
+    
+    .third-priority {
+      margin: 0px;
+      display:inline;
+      
+      cursor: pointer;
+      border-radius: 8px;
+      padding: 3px;
+      background-color: yellow;
     }
     
     .suggestion {
@@ -58,13 +87,104 @@
     }
     
     .navbar {
-      background-color: #14cba8;
+      background-color: #004d40;
     }
     
     .nav-item {
       padding: 1em;
      }
     
+    #p1 {
+      background-color: red;
+    }
+    
+    #p2 {
+      background-color: orange;
+    }
+    
+    #p3 {
+      background-color: yellow;
+    }
+    
+    #dropdownMenuButton {
+      color: black;
+      border-radius: 8px;
+      border: 2px solid black ;
+      cursor: pointer;
+      background-color: white; 
+      margin-right: 20px;
+    }
+    
+    .btn-primary {
+      border: 2px solid #004d40 ;
+      background-color: white; 
+      color: black;
+    }
+    
+    #help {
+      border: 2px solid black;
+    }
+    
+    /* Popup box BEGIN */
+     .hover_bkgr_fricc{
+      background:rgba(0,0,0,.4);
+      cursor:pointer;
+      display:none;
+      height:100%;
+      position:fixed;
+      text-align:center;
+      top:0;
+      width:100%;
+      z-index:10000;
+    }
+    
+    .hover_bkgr_fricc .helper{
+        display:inline-block;
+        height:100%;
+        vertical-align:middle;
+    }
+    
+    .hover_bkgr_fricc > div {
+        background-color: #fff;
+        box-shadow: 10px 10px 60px #555;
+        display: inline-block;
+        height: auto;
+        max-width: 669px;
+        min-height: 100px;
+        vertical-align: middle;
+        width: 60%;
+        position: relative;
+        border-radius: 8px;
+        padding: 15px 5%;
+    }
+    .popupCloseButton {
+        background-color: #fff;
+        border: 3px solid #999;
+        border-radius: 50px;
+        cursor: pointer;
+        display: inline-block;
+        font-family: arial;
+        font-weight: bold;
+        position: absolute;
+        top: -20px;
+        right: -20px;
+        font-size: 25px;
+        line-height: 30px;
+        width: 30px;
+        height: 30px;
+        text-align: center;
+    }
+    .popupCloseButton:hover {
+        background-color: #ccc;
+    }
+    .trigger_popup_fricc {
+        cursor: pointer;
+        font-size: 20px;
+        margin: 20px;
+        display: inline-block;
+        font-weight: bold;
+    }
+    /* Popup box END */
     
 	</style>
 
@@ -75,44 +195,86 @@
     <img class="navbar-brand" src = "{% static 'logo-white.png' %}" style="padding-top:5px;"></img>
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <div class="dropdown">
+      </li>
+      <li class="nav-item active" style="padding-left:20em;">
+         <i class="fas fa-undo" style="font-size:25px;color:white;"></i>
+      </li>
+      <li class="nav-item active">
+        <i class="fas fa-redo" style="font-size:25px;color:white;"></i>
+      </li>
+    </ul>
+  <div class="dropdown">
           <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Dropdown button
           </button>
           <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-            <a class="dropdown-item" href="#">Action</a>
-            <a class="dropdown-item" href="#">Another action</a>
-            <a class="dropdown-item" href="#">Something else here</a>
+             <a class="dropdown-item" id="first" href="#">Children</a>
+             <a class="dropdown-item" id="second" href="#">Teenagers</a>
+             <a class="dropdown-item" id="third" href="#">General Public</a>
           </div>
         </div>
-      </li>
-      <li class="nav-item active" style="padding-left:20em;">
-        <i class="material-icons" style="cursor:pointer;font-size:36px;">undo</i>
-      </li>
-      <li class="nav-item active">
-        <i class="material-icons" style="cursor:pointer;font-size:36px;">redo</i>
-      </li>
-    </ul>
-    <button class="btn btn-primary">
-      Help
-    </button>
+  
+    <a class="trigger_popup_fricc">
+      <button class="btn btn-primary" id = "help">
+        Help
+      </button>
+    </a>
+      <div class="hover_bkgr_fricc">
+        <span class="helper"></span>
+        <div>
+            <div class="popupCloseButton">X</div>
+            <div style="background-color:red;">
+              Priority one - Highly recommended words to change for your audience
+            </div>
+          
+            <div style="background-color:orange;">
+              Priority two - Decently recommended 
+            </div>
+          
+            <div style="background-color:yellow;">
+              Priority three - Optional
+            </div>
+          
+            <p> </p>
+            <p>Depending on the audience, the suggestions and priority of words change. </p>
+            <p>Click on a suggested word (under "Suggestions") to swap it with the original word. </p>
+            <p>
+              The filter button determines which set (out of red, orange, and yellow) of highlighted words are shown and are abled to be jumped
+              to via the "Previous word" and "Next word" functions. 
+            </p>
+        </div>
+      </div>
+  
+    
+  
   </nav>
+  
   <div class="box">
     <div class="area">
-      "Lorem ipsum dolor sit amet, <p class="highlight">124345</p> consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+      As our technologies travel to new cultural contexts and our
+      designs and methods engage new <p class="highlight first-priority"> constituencies</p>, both our
+      design and analytical practices face significant challenges.
+      We offer <p class="highlight first-priority"> postcolonial computing</p> as an analytical
+      orientation to better understand these challenges. This
+      analytic orientation inspires four key shifts in our approach
+      to HCI4D efforts: <p class = "highlight second-priority">generative</p> models of culture,
+      development as a historical program, uneven economic
+      relations, and cultural <p class="highlight first-priority"> epistemologies</p>. Then, through
+      reconsideration of the practices of engagement, <p class="highlight third-priority">articulation</p> 
+      and translation in other contexts, we offer designers and
+      researchers ways of understanding use and design practice
+      to respond to global connectivity and movement.
     </div>
     <div class="sidebar container">
-      <div class="row align-items-center" style="height:10%;border-bottom:2px solid black;">
+      <div class="row align-items-center" style="height:10%;border-bottom:2px solid #004d40;">
         <div class="col">
-          <button class="btn btn-primary">
-            Previous
+          <button class="btn btn-primary" >
+            Previous word
           </button>
         </div>
         <div class="col" align="right">
           <button class="btn btn-primary">
-            Next
+            Next word
           </button>
         </div>
       </div>
@@ -121,7 +283,7 @@
           Original Word Here
         </div>
       </div>
-      <div class="row" style="height:10%;">
+      <div class="row" style="height:10%; border-top:2px solid #39796b">
         <div class="col">
           Suggestions:
         </div>
@@ -134,15 +296,16 @@
           </ul>
         </div>
       </div>
-      <div class="row align-items-center justify-content-center" style="height:10%;border-top:2px solid black">
+      <div class="row align-items-center justify-content-center" style="height:10%;border-top:2px solid #004d40">
         <div class="column dropup">
           <button type="button" id="filterButton" align="center" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Filter
+            Select filter
           </button>
           <div class="dropdown-menu" aria-labelledby="filterButton">
-            <a class="dropdown-item" href="#">Action</a>
-            <a class="dropdown-item" href="#">Another action</a>
-            <a class="dropdown-item" href="#">Something else here</a>
+            <a class="dropdown-item" href="#" id="p1">Priority one</a>
+            <a class="dropdown-item" href="#" id="p2">Priority two</a>
+            <a class="dropdown-item" href="#" id="p3">Priority three</a>
+            <a class="dropdown-item" href="#" id="p0">No filter</a>
           </div>
         </div>
       </div>
@@ -150,6 +313,160 @@
   </div>
 </body>
 <script>
+  //socket.send("hi")
+  $(document).ready(function() {
+    
+      var audience = getAudience();
+      
+      var filterButtonObj =  $('#filterButton');
+    
+      $('#dropdownMenuButton').text(audience);
+    
+      $('#p1').on('click', function() {
+        filterButtonObj.text('Priority one');
+        filterButtonObj.css('background-color', 'red');
+        var first = document.getElementsByClassName("first-priority");
+        var lf = first.length;
+        for (var i = 0; i < lf; i += 1) {
+          var w = first.item(i);
+          w.style.backgroundColor = "red";
+        }
+        var s = document.getElementsByClassName("second-priority");
+        var ls = s.length;
+        for (var i = 0; i < ls; i += 1) {
+          var w = s.item(i);
+          w.style.backgroundColor = "white";
+        }
+        var t = document.getElementsByClassName("third-priority");
+        var lt = t.length;
+        for (var i = 0; i < lt; i += 1) {
+          var w = t.item(i);
+          w.style.backgroundColor = "white";
+        }
+      });
+
+      $('#p2').on('click', function() {
+        filterButtonObj.text('Priority two');
+        filterButtonObj.css('background-color', 'orange');
+        var first = document.getElementsByClassName("first-priority");
+        var lf = first.length;
+        for (var i = 0; i < lf; i += 1) {
+          var w = first.item(i);
+          w.style.backgroundColor = "white";
+        }
+        var s = document.getElementsByClassName("second-priority");
+        var ls = s.length;
+        for (var i = 0; i < ls; i += 1) {
+          var w = s.item(i);
+          w.style.backgroundColor = "orange";
+        }
+        var t = document.getElementsByClassName("third-priority");
+        var lt = t.length;
+        for (var i = 0; i < lt; i += 1) {
+          var w = t.item(i);
+          w.style.backgroundColor = "white";
+        }
+      });
+      
+      $('#p3').on('click', function() {
+        filterButtonObj.text('Priority three'); 
+        filterButtonObj.css('background-color', 'yellow')
+        var first = document.getElementsByClassName("first-priority");
+        var lf = first.length;
+        for (var i = 0; i < lf; i += 1) {
+          var w = first.item(i);
+          w.style.backgroundColor = "white";
+        }
+        var s = document.getElementsByClassName("second-priority");
+        var ls = s.length;
+        for (var i = 0; i < ls; i += 1) {
+          var w = s.item(i);
+          w.style.backgroundColor = "white";
+        }
+        var t = document.getElementsByClassName("third-priority");
+        var lt = t.length;
+        for (var i = 0; i < lt; i += 1) {
+          var w = t.item(i);
+          w.style.backgroundColor = "yellow";
+        }
+      });
+    
+     $('#p0').on('click', function() {
+        filterButtonObj.text('No filter'); 
+        filterButtonObj.css('background-color', 'white')
+       var first = document.getElementsByClassName("first-priority");
+        var lf = first.length;
+        for (var i = 0; i < lf; i += 1) {
+          var w = first.item(i);
+          w.style.backgroundColor = "red";
+        }
+        var s = document.getElementsByClassName("second-priority");
+        var ls = s.length;
+        for (var i = 0; i < ls; i += 1) {
+          var w = s.item(i);
+          w.style.backgroundColor = "orange";
+        }
+        var t = document.getElementsByClassName("third-priority");
+        var lt = t.length;
+        for (var i = 0; i < lt; i += 1) {
+          var w = t.item(i);
+          w.style.backgroundColor = "yellow";
+        }
+      });
+    
+    // drop-down menu
+      $('#first').on('click', function() {
+        $('#dropdownMenuButton').text('Children');
+        //audienceSelected = 1; 
+      });
+
+      $('#second').on('click', function() {
+        $('#dropdownMenuButton').text('Teenagers');
+        //audienceSelected = 1; 
+      });
+      
+      $('#third').on('click', function() {
+        $('#dropdownMenuButton').text('General Public');
+        //audienceSelected = 1; 
+      });
+    
+      $(".trigger_popup_fricc").click(function(){
+       $('.hover_bkgr_fricc').show();
+      });
+    
+      $('.hover_bkgr_fricc').click(function(){
+        $('.hover_bkgr_fricc').hide();
+      });
+    
+      $('.popupCloseButton').click(function(){
+        $('.hover_bkgr_fricc').hide();
+      });
+    
+      $('.highlight').click(function(){
+        $('#original').text(this.textContent);
+        $('#original').css("background-color", getComputedStyle(this).backgroundColor);
+      });
+      /* Add suggestions with suggestion class
+         Add a function onto all members of that class
+         Need to know what the word to replace is
+         Need to know what priorities the suggestions are
+         Dictionary[Original Word: List of Suggestions]
+         Dictionary[Suggestion : Original Word]
+         Dictionary[Suggestion: Priority]
+         Dictionary[Original Word: Priority]
+         List of changes for undo
+            replacement, replaced, priority
+            search priority for textContent matching replacement
+            Change back to replaced
+            Put into list of undos
+         List of undos for redo
+         */
+    });
   
+  function getAudience() {
+    var url = new URL(window.location.href);
+    var a = url.searchParams.get("audience");
+    return a;
+  }
 </script>
 </html>

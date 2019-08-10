@@ -42,12 +42,6 @@
       padding-top: 50px;
       padding-bottom: 50px;
     }
-    
-    background-image: linear-gradient(to top, #fddb92 0%, #d1fdff 100%);
-    
-      
-    
-    
 	</style>
     
 </head>
@@ -76,7 +70,7 @@
             <div class="dropdown-menu">
               <a class="dropdown-item" id="first" href="#">Children</a>
               <a class="dropdown-item" id="second" href="#">Teenagers</a>
-              <a class="dropdown-item" id="second" href="#">General Public</a>
+              <a class="dropdown-item" id="third" href="#">General Public</a>
             </div>
           </div>
         </div>
@@ -106,7 +100,16 @@
     
     $(document).ready(function() {
       
+      var socket = new WebSocket('wss://CS160finalProjectGroup8-brendanleahy778216.codeanyapp.com'); 
+
       
+      socket.onopen = function(event) {
+        socket.send("hello");
+      }
+      
+      socket.onmessage = function (msg) {
+        console.log(msg); // prints message when receive
+      }
       
       //var audienceSelected = 0; 
       
@@ -119,7 +122,7 @@
             }
             */
             /* location.href = "https://cs160finalprojectgroup8-brendanleahy778216.codeanyapp.com/editor"; */
-            $('#f').append('<input type="text" name="audience" value=' + document.getElementById("f").innerHTML + '> ');
+            $('#f').append('<input type="text" name="audience" value="'+ $('#default').text() +'">');
             $('#f').submit();
         };
       
