@@ -254,7 +254,7 @@
       As our technologies travel to new cultural contexts and our
       designs and methods engage new <p class="highlight first-priority"> constituencies</p>, both our
       design and analytical practices face significant challenges.
-      We offer <p class="highlight first-priority"> postcolonial computing</p> as an analytical
+      We offer postcolonial computing as an analytical
       orientation to better understand these challenges. This
       analytic orientation inspires four key shifts in our approach
       to HCI4D efforts: <p class = "highlight second-priority">generative</p> models of culture,
@@ -268,12 +268,12 @@
     <div class="sidebar container">
       <div class="row align-items-center" style="height:10%;border-bottom:2px solid #004d40;">
         <div class="col">
-          <button class="btn btn-primary" >
+          <button class="btn btn-primary" id="prev">
             Previous word
           </button>
         </div>
         <div class="col" align="right">
-          <button class="btn btn-primary">
+          <button class="btn btn-primary" id="next">
             Next word
           </button>
         </div>
@@ -290,9 +290,7 @@
       </div>
       <div class="row" style="height:60%;">
         <div class="col">
-          <ul style="margin:0;padding:0;list-style-type:none;text-align:center;">
-          <li id="s1" class="suggestion">Suggestion 1</li>
-          <li id="s2" class="suggestion">Suggestion 2</li>
+          <ul style="margin:0;padding:0;list-style-type:none;text-align:center;" id="sList">
           </ul>
         </div>
       </div>
@@ -317,8 +315,11 @@
   $(document).ready(function() {
     
       var audience = getAudience();
-      
       var filterButtonObj =  $('#filterButton');
+      var highlightedWords = getHighlightedWords().reverse(); 
+      var hWIndex = 0;
+      //can do the same thing for colors 
+      
     
       $('#dropdownMenuButton').text(audience);
     
@@ -443,24 +444,35 @@
       });
     
       $('.highlight').click(function(){
-        $('#original').text(this.textContent);
-        $('#original').css("background-color", getComputedStyle(this).backgroundColor);
+        replaceOriginal(this.textContent, getComputedStyle(this).backgroundColor);
       });
-      /* Add suggestions with suggestion class
-         Add a function onto all members of that class
-         Need to know what the word to replace is
-         Need to know what priorities the suggestions are
-         Dictionary[Original Word: List of Suggestions]
-         Dictionary[Suggestion : Original Word]
-         Dictionary[Suggestion: Priority]
-         Dictionary[Original Word: Priority]
+      /* Suggestions - for every time a highlight class word or previous/next is clicked
+            empty out the current suggestion list (<ul>)
+            Add suggestions with suggestion class
+            Add a function onto all members of that class
+            Need to know what the word to replace is
+            Need to know what priorities the suggestions are
+            Dictionary[Original Word: List of Suggestions]
+            Dictionary[Suggestion : Original Word and Original Word : Original Word]
+            Dictionary[Suggestion: Priority]
+            Dictionary[Original Word: Priority]
          List of changes for undo
             replacement, replaced, priority
             search priority for textContent matching replacement
             Change back to replaced
             Put into list of undos
          List of undos for redo
+            Same as above
+         Previous/Next
+            Ordered list of words
+            Previous/Next button can get the word, search, and call function to replace original and suggestions
          */
+    
+      $('#next').click(function(){
+        replaceOriginal(highlightedWords[hwIndex]);
+        
+        //replace second argument with color 
+      });
     });
   
   function getAudience() {
@@ -468,5 +480,54 @@
     var a = url.searchParams.get("audience");
     return a;
   }
+  
+  function replaceOriginal(word, color) {
+    $('#original').text(word);
+    $('#original').css("background-color", color);
+  }
+  
+  /* Generate array of all highlighted words */ 
+  function getHighlightedWords() {
+    var highlightClass = "highlight"    
+    var highlightedWords = []
+    var elements = $("." + highlightClass).show();
+    for (var i = 0; i < elements.length; i++) {
+      highlightedWords.push(elements[i].textContent.replace(/ /g, ''));
+    }
+    return highlightedWords; 
+  }
+  
+  /*
+  function replaceSuggestions(word) {
+    word = originalify[word];
+    $('#sList').empty();
+    var suggestions = rList[word];
+    for (var i = 0; i < suggetions.length; i += 1) {
+      var replacement = suggestions[i];
+      var priority = spList[replacement];
+      var e = document.createElement('li');
+      e.textContent = replacement;
+      e.setAttribute('class', 'suggestion');
+      e.setAttribute('id', i.toString());
+      $('#sList').append(e);
+      $('#'+i.toString).css("background-color", colors[priority]);
+    }
+    $('.suggestion').click(function() {
+      var o = document.getElementsByClassName('highlight');
+      for (var i = 0; i < o.length; i += 1) {
+        var w = o.item(i);
+        if (w.textContent == word) {
+          o = w;
+          break;
+        }
+      }
+      o.textContent = this.textContent;
+    });
+  }
+  */
+  colors = {"first-priority": "red", "second-priority":"orange", "third-priority":"yellow"};
+  rList = {"generative" : ["able to produce", "procreative"]};
+  originalify = {"able to produce":"generative", "procreative":"generative", "generative":"generative"};
+  priorities = {"generative":"second-priority", "able to produce":"suggested", "procreative":"suggested"};
 </script>
 </html>
