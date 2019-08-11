@@ -320,7 +320,7 @@
     
       var audience = getAudience();
       var filterButtonObj =  $('#filterButton');
-      //var highlightedWords = getHighlightedWords(); 
+      var highlightedWords = getHighlightedWords(); 
       //var highlightedColors = getHighlightedColors();
       var hWIndex = -1;
       //var hCIndex = -1;
@@ -451,7 +451,8 @@
       $('.highlight').click(function(){
         elementToReplace = this;
         replaceOriginal(this.textContent);
-        replaceSuggestions(this);
+        replaceSuggestions(this);     
+        hWIndex = highlightedWords.indexOf(this.textContent);   
       });
       /* Suggestions - for every time a highlight class word or previous/next is clicked
             empty out the current suggestion list (<ul>)
@@ -462,7 +463,7 @@
             Dictionary[Original Word: List of Suggestions]
             Dictionary[Suggestion : Original Word and Original Word : Original Word]
             Dictionary[Suggestion: Priority]
-            Dictionary[Original Word: Priority]
+            Dictionary[Original Word: Priority] 
          List of changes for undo
             replacement, replaced, priority
             search priority for textContent matching replacement
@@ -477,14 +478,30 @@
     
       $('#prev').click(function(){
         hWIndex -= 1;
+        var w = highlightedWords[hWIndex];
+        var l = document.getElementsByClassName("highlight");
+        for (var i = 0; i < l.length; i += 1) {
+          var e = l.item(i);
+          if (originalify[e.textContent] === w) {
+            elementToReplace = e;
+          }
+        }
         replaceOriginal(highlightedWords[hWIndex]);
-        //replace second argument with color 
+        replaceSuggestions(elementToReplace);
       });
     
       $('#next').click(function(){
         hWIndex += 1;
+        var w = highlightedWords[hWIndex];
+        var l = document.getElementsByClassName("highlight");
+        for (var i = 0; i < l.length; i += 1) {
+          var e = l.item(i);
+          if (originalify[e.textContent] === w) {
+            elementToReplace = e;
+          }
+        }
         replaceOriginal(highlightedWords[hWIndex]);
-        //replace second argument with color 
+        replaceSuggestions(elementToReplace);
       });
     });
   
@@ -497,7 +514,7 @@
   function replaceOriginal(word) {
     
     $('#original').text(originalify[word]);
-    console.log(priorities[originalify[word]]);
+    //console.log(priorities[originalify[word]]);
     $('#original').css("background-color", colors[priorities[originalify[word]]]);
     $('#original').click(function() {
       elementToReplace.textContent = this.textContent;
@@ -538,7 +555,7 @@
   
   function replaceSuggestions(word) {
     originalWord = originalify[word.textContent];
-    console.log(originalWord);
+    //console.log(originalWord);
     $('#sList').empty();
     var suggestions = rList[originalWord];
     for (var i = 0; i < suggestions.length; i += 1) {
@@ -549,7 +566,7 @@
       e.setAttribute('class', 'suggestion');
       e.setAttribute('id', i.toString());
       $('#sList').append(e);
-      $('#'+i.toString()).css("background-color", colors[priority]);
+      $('#'+i.toString()).css({"background-color", colors[priority]);
     }
     $('.suggestion').click(function() {
       elementToReplace.textContent = this.textContent;
@@ -565,7 +582,7 @@
                 "constituencies":"constituencies", "epistemologies":"epistemologies", "theories of knowledge": "epistemologies",
                 "articulation":"articulation","clarification":"articulation"};
   priorities = {"generative":"second-priority", "able to produce":"suggested", "procreative":"suggested","constituencies":"first-priority",
-               "groups":"suggested", "epistemologies":"first-priority", "theories of knowledge":"suggested", "articulation":"second-priority",
+               "groups":"suggested", "epistemologies":"first-priority", "theories of knowledge":"suggested", "articulation":"third-priority",
                "clarification":"suggested"};
 </script>
 </html>
