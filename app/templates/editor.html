@@ -125,6 +125,10 @@
       border: 2px solid black;
     }
     
+    #original {
+      cursor:pointer;
+    }
+    
     /* Popup box BEGIN */
      .hover_bkgr_fricc{
       background:rgba(0,0,0,.4);
@@ -252,14 +256,14 @@
   <div class="box">
     <div class="area">
       As our technologies travel to new cultural contexts and our
-      designs and methods engage new <p class="highlight first-priority"> constituencies</p>, both our
+      designs and methods engage new <p class="highlight first-priority">constituencies</p>, both our
       design and analytical practices face significant challenges.
       We offer postcolonial computing as an analytical
       orientation to better understand these challenges. This
       analytic orientation inspires four key shifts in our approach
       to HCI4D efforts: <p class = "highlight second-priority">generative</p> models of culture,
       development as a historical program, uneven economic
-      relations, and cultural <p class="highlight first-priority"> epistemologies</p>. Then, through
+      relations, and cultural <p class="highlight first-priority">epistemologies</p>. Then, through
       reconsideration of the practices of engagement, <p class="highlight third-priority">articulation</p> 
       and translation in other contexts, we offer designers and
       researchers ways of understanding use and design practice
@@ -316,12 +320,13 @@
     
       var audience = getAudience();
       var filterButtonObj =  $('#filterButton');
-      var highlightedWords = getHighlightedWords().reverse(); 
-      var hWIndex = 0;
-      //can do the same thing for colors 
-      
+      //var highlightedWords = getHighlightedWords(); 
+      //var highlightedColors = getHighlightedColors();
+      var hWIndex = -1;
+      //var hCIndex = -1;
+      //can do the same thing for colors
     
-      $('#dropdownMenuButton').text(audience);
+  $('#dropdownMenuButton').text(audience);
     
       $('#p1').on('click', function() {
         filterButtonObj.text('Priority one');
@@ -444,7 +449,9 @@
       });
     
       $('.highlight').click(function(){
-        replaceOriginal(this.textContent, getComputedStyle(this).backgroundColor);
+        elementToReplace = this;
+        replaceOriginal(this.textContent);
+        replaceSuggestions(this);
       });
       /* Suggestions - for every time a highlight class word or previous/next is clicked
             empty out the current suggestion list (<ul>)
@@ -468,9 +475,15 @@
             Previous/Next button can get the word, search, and call function to replace original and suggestions
          */
     
+      $('#prev').click(function(){
+        hWIndex -= 1;
+        replaceOriginal(highlightedWords[hWIndex]);
+        //replace second argument with color 
+      });
+    
       $('#next').click(function(){
-        replaceOriginal(highlightedWords[hwIndex]);
-        
+        hWIndex += 1;
+        replaceOriginal(highlightedWords[hWIndex]);
         //replace second argument with color 
       });
     });
@@ -481,9 +494,15 @@
     return a;
   }
   
-  function replaceOriginal(word, color) {
-    $('#original').text(word);
-    $('#original').css("background-color", color);
+  function replaceOriginal(word) {
+    
+    $('#original').text(originalify[word]);
+    console.log(priorities[originalify[word]]);
+    $('#original').css("background-color", colors[priorities[originalify[word]]]);
+    $('#original').click(function() {
+      elementToReplace.textContent = this.textContent;
+      elementToReplace.style.backgroundColor = colors[priorities[this.textContent]];
+    });
   }
   
   /* Generate array of all highlighted words */ 
@@ -498,36 +517,55 @@
   }
   
   /*
+  function getHighlightedColors() {
+    var highlightClass = "highlight"    
+    var highlightedColors = []
+    var elements = $("." + highlightClass).show();
+    for (var i = 0; i < elements.length; i++) {
+      var cL = elements[i].classList; 
+      if (cL.contains("first-priority")) {
+         highlightedColors.push("red");
+      } else if (cL.contains("second-priority")) {
+         highlightedColors.push("orange");
+      } else { //third priority 
+         highlightedColors.push("yellow");
+      }
+    }
+    return highlightedColors; 
+  }
+  */
+  
+  
   function replaceSuggestions(word) {
-    word = originalify[word];
+    originalWord = originalify[word.textContent];
+    console.log(originalWord);
     $('#sList').empty();
-    var suggestions = rList[word];
-    for (var i = 0; i < suggetions.length; i += 1) {
+    var suggestions = rList[originalWord];
+    for (var i = 0; i < suggestions.length; i += 1) {
       var replacement = suggestions[i];
-      var priority = spList[replacement];
+      var priority = priorities[replacement];
       var e = document.createElement('li');
       e.textContent = replacement;
       e.setAttribute('class', 'suggestion');
       e.setAttribute('id', i.toString());
       $('#sList').append(e);
-      $('#'+i.toString).css("background-color", colors[priority]);
+      $('#'+i.toString()).css("background-color", colors[priority]);
     }
     $('.suggestion').click(function() {
-      var o = document.getElementsByClassName('highlight');
-      for (var i = 0; i < o.length; i += 1) {
-        var w = o.item(i);
-        if (w.textContent == word) {
-          o = w;
-          break;
-        }
-      }
-      o.textContent = this.textContent;
+      elementToReplace.textContent = this.textContent;
+      elementToReplace.style.backgroundColor = colors[priorities[this.textContent]];
     });
   }
-  */
-  colors = {"first-priority": "red", "second-priority":"orange", "third-priority":"yellow"};
-  rList = {"generative" : ["able to produce", "procreative"]};
-  originalify = {"able to produce":"generative", "procreative":"generative", "generative":"generative"};
-  priorities = {"generative":"second-priority", "able to produce":"suggested", "procreative":"suggested"};
+  
+  elementToReplace = null;
+  colors = {"first-priority": "red", "second-priority":"orange", "third-priority":"yellow","suggested":"lightgreen"};
+  rList = {"generative" : ["able to produce", "procreative"], "constituencies": ["groups"], "epistemologies":["theories of knowledge"],
+          "articulation": ["clarification"]};
+  originalify = {"able to produce":"generative", "procreative":"generative", "generative":"generative", "groups": "constituencies",
+                "constituencies":"constituencies", "epistemologies":"epistemologies", "theories of knowledge": "epistemologies",
+                "articulation":"articulation","clarification":"articulation"};
+  priorities = {"generative":"second-priority", "able to produce":"suggested", "procreative":"suggested","constituencies":"first-priority",
+               "groups":"suggested", "epistemologies":"first-priority", "theories of knowledge":"suggested", "articulation":"second-priority",
+               "clarification":"suggested"};
 </script>
 </html>
