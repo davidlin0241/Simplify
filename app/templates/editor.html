@@ -25,7 +25,7 @@
     
     .box {
       display: flex;
-      height: 91%;
+      height: 91.3%;
       width: 100%;
       flex-direction:row;
       background: #39796b;
@@ -83,6 +83,9 @@
     }
     
     .suggestion {
+      margin: 0px;
+      cursor: pointer;
+      border-radius: 8px;
       cursor:pointer;
     }
     
@@ -120,12 +123,20 @@
       background-color: white; 
       color: black;
     }
+    .btn {
+      position: 
+    }
     
     #help {
       border: 2px solid black;
     }
     
     #original {
+      margin: 0px;
+      display:inline;
+      cursor: pointer;
+      border-radius: 8px;
+      padding: 3px;
       cursor:pointer;
     }
     
@@ -201,10 +212,14 @@
       <li class="nav-item active">
       </li>
       <li class="nav-item active" style="padding-left:20em;">
-         <i class="fas fa-undo" style="font-size:25px;color:white;"></i>
+        <button class = "btn">
+          <i class="fas fa-undo" style="font-size:25px;color:black;"></i>
+        </button>     
       </li>
       <li class="nav-item active">
-        <i class="fas fa-redo" style="font-size:25px;color:white;"></i>
+        <button class= "btn">
+          <i class="fas fa-redo" style="font-size:25px;color:black;"></i>
+        </button>
       </li>
     </ul>
   <div class="dropdown">
@@ -283,8 +298,10 @@
         </div>
       </div>
       <div class="row align-items-center" style="height:10%;">
-        <div class="col" align="center" id="original">
-          Original Word Here
+        <div class="col" align="center">
+          <div id="original">
+          
+          </div>
         </div>
       </div>
       <div class="row" style="height:10%; border-top:2px solid #39796b">
@@ -294,7 +311,8 @@
       </div>
       <div class="row" style="height:60%;">
         <div class="col">
-          <ul style="margin:0;padding:0;list-style-type:none;text-align:center;" id="sList">
+          <ul id="sList" style="list-style-type:none;text-align:center">
+            
           </ul>
         </div>
       </div>
@@ -454,16 +472,7 @@
         replaceSuggestions(this);     
         hWIndex = highlightedWords.indexOf(this.textContent);   
       });
-      /* Suggestions - for every time a highlight class word or previous/next is clicked
-            empty out the current suggestion list (<ul>)
-            Add suggestions with suggestion class
-            Add a function onto all members of that class
-            Need to know what the word to replace is
-            Need to know what priorities the suggestions are
-            Dictionary[Original Word: List of Suggestions]
-            Dictionary[Suggestion : Original Word and Original Word : Original Word]
-            Dictionary[Suggestion: Priority]
-            Dictionary[Original Word: Priority] 
+      /* 
          List of changes for undo
             replacement, replaced, priority
             search priority for textContent matching replacement
@@ -472,12 +481,13 @@
          List of undos for redo
             Same as above
          Previous/Next
-            Ordered list of words
-            Previous/Next button can get the word, search, and call function to replace original and suggestions
+            Make Previous/Next work with filters
          */
     
       $('#prev').click(function(){
-        hWIndex -= 1;
+        if (!(hWIndex <= 0)) {
+          hWIndex -= 1;
+        }
         var w = highlightedWords[hWIndex];
         var l = document.getElementsByClassName("highlight");
         for (var i = 0; i < l.length; i += 1) {
@@ -491,7 +501,9 @@
       });
     
       $('#next').click(function(){
-        hWIndex += 1;
+        if (hWIndex != highlightedWords.length - 1) {
+          hWIndex += 1;
+        }
         var w = highlightedWords[hWIndex];
         var l = document.getElementsByClassName("highlight");
         for (var i = 0; i < l.length; i += 1) {
@@ -566,7 +578,7 @@
       e.setAttribute('class', 'suggestion');
       e.setAttribute('id', i.toString());
       $('#sList').append(e);
-      $('#'+i.toString()).css({"background-color", colors[priority]);
+      $('#'+i.toString()).css("background-color", colors[priority]);
     }
     $('.suggestion').click(function() {
       elementToReplace.textContent = this.textContent;
