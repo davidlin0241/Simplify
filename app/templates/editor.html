@@ -144,7 +144,6 @@
     }
     
     /* Popup box BEGIN */
-    /* Source: https://html-online.com/articles/simple-popup-box/ */ 
      .hover_bkgr_fricc{
       background:rgba(0,0,0,.4);
       cursor:pointer;
@@ -354,7 +353,7 @@
         var lf = first.length;
         for (var i = 0; i < lf; i += 1) {
           var w = first.item(i);
-          w.style.backgroundColor = "red";
+          w.style.backgroundColor = colors[priorities[w.textContent]];
         }
         var s = document.getElementsByClassName("second-priority");
         var ls = s.length;
@@ -387,7 +386,7 @@
         var ls = s.length;
         for (var i = 0; i < ls; i += 1) {
           var w = s.item(i);
-          w.style.backgroundColor = "orange";
+          w.style.backgroundColor = colors[priorities[w.textContent]];
         }
         var t = document.getElementsByClassName("third-priority");
         var lt = t.length;
@@ -419,7 +418,7 @@
         var lt = t.length;
         for (var i = 0; i < lt; i += 1) {
           var w = t.item(i);
-          w.style.backgroundColor = "yellow";
+          w.style.backgroundColor = colors[priorities[w.textContent]];
         }
         
         hWIndex = -1;
@@ -496,7 +495,6 @@
          */
     
       $('#prev').click(function(){
-        hWIndex = highlightedWords.indexOf(elementToReplace.textContent);   
         if (!(hWIndex <= 0)) {
           hWIndex -= 1;
         }
@@ -504,7 +502,7 @@
         var l = document.getElementsByClassName("highlight");
         for (var i = 0; i < l.length; i += 1) {
           var e = l.item(i);
-          if (originalify[e.textContent] === w) {
+          if (originalify[e.textContent] == w) {
             elementToReplace = e;
           }
         }
@@ -513,7 +511,6 @@
       });
     
       $('#next').click(function(){
-         hWIndex = highlightedWords.indexOf(elementToReplace.textContent);   
         if (hWIndex != highlightedWords.length - 1) {
           hWIndex += 1;
         }
@@ -528,7 +525,6 @@
         replaceOriginal(highlightedWords[hWIndex]);
         replaceSuggestions(elementToReplace);
       });
-    
       $('#undoButton').click(function() {
         var ch = undo.pop();
         if (typeof ch == 'undefined') {
@@ -546,7 +542,6 @@
           }
         }
       });
-    
       $('#redoButton').click(function() {
         var ch = redo.pop();
         if (typeof ch == 'undefined') {
