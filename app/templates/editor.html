@@ -648,6 +648,9 @@
       elementToReplace.textContent = this.textContent;
       elementToReplace.style.backgroundColor = colors[priorities[this.textContent]];
       undo.push([original, rep]);
+      if (redo.length > 0) {
+        redo = [];
+      }
     });
   }
   
