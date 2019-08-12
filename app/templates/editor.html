@@ -144,6 +144,7 @@
     }
     
     /* Popup box BEGIN */
+    /* Source: https://html-online.com/articles/simple-popup-box/ */ 
      .hover_bkgr_fricc{
       background:rgba(0,0,0,.4);
       cursor:pointer;
@@ -495,6 +496,7 @@
          */
     
       $('#prev').click(function(){
+        hWIndex = highlightedWords.indexOf(elementToReplace.textContent);   
         if (!(hWIndex <= 0)) {
           hWIndex -= 1;
         }
@@ -511,6 +513,7 @@
       });
     
       $('#next').click(function(){
+         hWIndex = highlightedWords.indexOf(elementToReplace.textContent);   
         if (hWIndex != highlightedWords.length - 1) {
           hWIndex += 1;
         }
@@ -525,6 +528,7 @@
         replaceOriginal(highlightedWords[hWIndex]);
         replaceSuggestions(elementToReplace);
       });
+    
       $('#undoButton').click(function() {
         var ch = undo.pop();
         if (typeof ch == 'undefined') {
@@ -542,6 +546,7 @@
           }
         }
       });
+    
       $('#redoButton').click(function() {
         var ch = redo.pop();
         if (typeof ch == 'undefined') {
