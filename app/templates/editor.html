@@ -338,11 +338,8 @@
     
       var audience = getAudience();
       var filterButtonObj =  $('#filterButton');
-      var highlightedWords = getHighlightedWords(); 
-      //var highlightedColors = getHighlightedColors();
+      var highlightedWords = getHighlightedWords("highlight"); 
       var hWIndex = -1;
-      //var hCIndex = -1;
-      //can do the same thing for colors
     
   $('#dropdownMenuButton').text(audience);
     
@@ -367,6 +364,10 @@
           var w = t.item(i);
           w.style.backgroundColor = "white";
         }
+        
+        hWIndex = -1;
+        highlightedWords = getHighlightedWords("first-priority"); 
+   
       });
 
       $('#p2').on('click', function() {
@@ -390,6 +391,9 @@
           var w = t.item(i);
           w.style.backgroundColor = "white";
         }
+        
+        hWIndex = -1;
+        highlightedWords = getHighlightedWords("second-priority"); 
       });
       
       $('#p3').on('click', function() {
@@ -413,6 +417,9 @@
           var w = t.item(i);
           w.style.backgroundColor = "yellow";
         }
+        
+        hWIndex = -1;
+        highlightedWords = getHighlightedWords("third-priority"); 
       });
     
      $('#p0').on('click', function() {
@@ -436,22 +443,22 @@
           var w = t.item(i);
           w.style.backgroundColor = "yellow";
         }
+      
+        hWIndex = -1;
+        highlightedWords = getHighlightedWords("highlight"); 
       });
     
     // drop-down menu
       $('#first').on('click', function() {
         $('#dropdownMenuButton').text('Children');
-        //audienceSelected = 1; 
       });
 
       $('#second').on('click', function() {
         $('#dropdownMenuButton').text('Teenagers');
-        //audienceSelected = 1; 
       });
       
       $('#third').on('click', function() {
         $('#dropdownMenuButton').text('General Public');
-        //audienceSelected = 1; 
       });
     
       $(".trigger_popup_fricc").click(function(){
@@ -535,6 +542,7 @@
   }
   
   /* Generate array of all highlighted words */ 
+  /*
   function getHighlightedWords() {
     var highlightClass = "highlight"    
     var highlightedWords = []
@@ -544,6 +552,19 @@
     }
     return highlightedWords; 
   }
+  */
+  
+  function getHighlightedWords(priority) {
+    var highlightClass = priority;    
+    var highlightedWords = []
+    var elements = $("." + highlightClass).show();
+    for (var i = 0; i < elements.length; i++) {
+      highlightedWords.push(elements[i].textContent.replace(/ /g, ''));
+    }
+    return highlightedWords; 
+  }
+  
+  
   
   /*
   function getHighlightedColors() {
