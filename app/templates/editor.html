@@ -215,12 +215,12 @@
       <li class="nav-item active">
       </li>
       <li class="nav-item active" style="padding-left:20em;">
-        <button class = "btn">
+        <button class = "btn" id="undoButton">
           <i class="fas fa-undo" style="font-size:25px;color:black;"></i>
         </button>     
       </li>
       <li class="nav-item active">
-        <button class= "btn">
+        <button class= "btn" id="redoButton">
           <i class="fas fa-redo" style="font-size:25px;color:black;"></i>
         </button>
       </li>
@@ -518,6 +518,40 @@
         replaceOriginal(highlightedWords[hWIndex]);
         replaceSuggestions(elementToReplace);
       });
+      $('#undoButton').click(function() {
+        var ch = undo.pop();
+        if (typeof ch == 'undefined') {
+          return;
+        }
+        redo.push(ch);
+        var o = ch[0];
+        var r = ch[1];
+        var l = document.getElementsByClassName("highlight");
+        for (var i = 0; i < l.length; i += 1) {
+          var e = l.item(i);
+          if (e.textContent == r) {
+            e.textContent = o;
+            e.style.backgroundColor = colors[priorities[o]];
+          }
+        }
+      });
+      $('#redoButton').click(function() {
+        var ch = redo.pop();
+        if (typeof ch == 'undefined') {
+          return;
+        }
+        undo.push(ch);
+        var o = ch[0];
+        var r = ch[1];
+        var l = document.getElementsByClassName("highlight");
+        for (var i = 0; i < l.length; i += 1) {
+          var e = l.item(i);
+          if (e.textContent == o) {
+            e.textContent = r;
+            e.style.backgroundColor = colors[priorities[r]];
+          }
+        }
+      });
     });
   
   function getAudience() {
@@ -588,8 +622,11 @@
       $('#'+i.toString()).css("background-color", colors[priority]);
     }
     $('.suggestion').click(function() {
+      var original = elementToReplace.textContent;
+      var rep = this.textContent;
       elementToReplace.textContent = this.textContent;
       elementToReplace.style.backgroundColor = colors[priorities[this.textContent]];
+      undo.push([original, rep]);
     });
   }
   
@@ -603,5 +640,7 @@
   priorities = {"generative":"second-priority", "able to produce":"suggested", "procreative":"suggested","constituencies":"first-priority",
                "groups":"suggested", "epistemologies":"first-priority", "theories of knowledge":"suggested", "articulation":"third-priority",
                "clarification":"suggested"};
+  undo = [];
+  redo = [];
 </script>
 </html>
