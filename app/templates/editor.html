@@ -87,6 +87,9 @@
       cursor: pointer;
       border-radius: 8px;
       cursor:pointer;
+      width:fit-content;
+      margin:15px;
+      padding:.2em;
     }
     
     .navbar {
@@ -574,10 +577,14 @@
       var replacement = suggestions[i];
       var priority = priorities[replacement];
       var e = document.createElement('li');
-      e.textContent = replacement;
-      e.setAttribute('class', 'suggestion');
-      e.setAttribute('id', i.toString());
+      var ec = document.createElement('div');
+      e.setAttribute("style", "display:inline-block;margin-right:2em;")
+      ec.textContent = replacement;
+      ec.setAttribute('class', 'suggestion');
+      ec.setAttribute('id', i.toString());
+      e.appendChild(ec);
       $('#sList').append(e);
+      $('#'+i.toString()).css("background-color", colors[priority]);
       $('#'+i.toString()).css("background-color", colors[priority]);
     }
     $('.suggestion').click(function() {
