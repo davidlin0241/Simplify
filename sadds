@@ -1,0 +1,210 @@
+[33mcommit 7e93c872974f0b4d5469eaa5ae04b3ca82325676[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m, [m[1;31morigin/master[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Merge: 104a337 352cd2f
+Author: brendanleahy <brendanleahy@berkeley.edu>
+Date:   Mon Aug 12 19:52:20 2019 -0400
+
+    undo previous commit
+
+[33mcommit 104a3371917698e939083f994ea79c06dd42981a[m
+Author: brendanleahy <brendanleahy@berkeley.edu>
+Date:   Mon Aug 12 19:51:05 2019 -0400
+
+    undo previous commit
+
+[33mcommit 352cd2ffaaf4fc1bae6e1bc498663d146bdc27c9[m
+Merge: 7f9b875 59e65bb
+Author: david-lin <david-lin@berkeley.edu>
+Date:   Mon Aug 12 19:45:15 2019 -0400
+
+    1
+
+[33mcommit 7f9b875848cc04eb6045534114c5de6740357372[m
+Author: david-lin <david-lin@berkeley.edu>
+Date:   Mon Aug 12 19:41:59 2019 -0400
+
+    1
+
+[33mcommit 59e65bbd6a38215b89c952d2ef5b60296b03e745[m
+Author: brendanleahy <brendanleahy@berkeley.edu>
+Date:   Mon Aug 12 19:38:13 2019 -0400
+
+    fixed filter recoloring
+
+[33mcommit 05bbe5b4a7aee618b48df4c9ce161f95491cce93[m
+Merge: a3592ba 65fd58b
+Author: brendanleahy <brendanleahy@berkeley.edu>
+Date:   Mon Aug 12 19:27:12 2019 -0400
+
+    Merge branch 'master' of github.com:BFLeahy/CS160finalProjectGroup8
+
+[33mcommit a3592ba4b1030720af0ee1b2236fe4b82383c454[m
+Author: brendanleahy <brendanleahy@berkeley.edu>
+Date:   Mon Aug 12 19:27:07 2019 -0400
+
+    fixed redo after non-undo change
+
+[33mcommit 65fd58b5a82073961b8fbaf5fc599b0ddcd33390[m
+Author: david-lin <david-lin@berkeley.edu>
+Date:   Mon Aug 12 19:09:29 2019 -0400
+
+    Filter prev and next functions done
+
+[33mcommit df0b35b8e405db9fe3f2a39c149c963aecd8d74d[m
+Author: brendanleahy <brendanleahy@berkeley.edu>
+Date:   Mon Aug 12 15:50:29 2019 -0400
+
+    changed settings for both hosts
+
+[33mcommit bfa9f6fe79586bc16574ac8b8dc355b39dac9a93[m
+Merge: 038a2ef 4522d36
+Author: david-lin <david-lin@berkeley.edu>
+Date:   Mon Aug 12 15:47:57 2019 -0400
+
+    1
+
+[33mcommit 038a2eff85a8cc650b5e2c7a46a3857932c0d953[m
+Merge: 3a607a9 e38f885
+Author: david-lin <david-lin@berkeley.edu>
+Date:   Mon Aug 12 15:47:05 2019 -0400
+
+    1
+
+[33mcommit 4522d36f3049e18804345b325545e682c77156a0[m
+Author: brendanleahy <brendanleahy@berkeley.edu>
+Date:   Mon Aug 12 15:45:47 2019 -0400
+
+    added pyc to gitignore
+
+[33mcommit 3a607a9c407a6e0b1d9c5a7259153f9a4515cf2e[m
+Author: david-lin <david-lin@berkeley.edu>
+Date:   Mon Aug 12 15:43:02 2019 -0400
+
+    Filter changes
+
+[33mcommit e38f8858414e3edff0d76c3dbcb8df974fe8e542[m
+Author: brendanleahy <brendanleahy@berkeley.edu>
+Date:   Mon Aug 12 15:41:40 2019 -0400
+
+    undo and redo basic functionality
+
+[33mcommit d3643a6db26961bdc9dd7bdb2bfd7897a371aa57[m
+Author: brendanleahy <brendanleahy@berkeley.edu>
+Date:   Mon Aug 12 15:22:11 2019 -0400
+
+    fixed styling for suggestions
+
+[33mcommit 54d02cba9a751a66f9a516f232e893e9384a96e1[m
+Author: brendanleahy <brendanleahy@berkeley.edu>
+Date:   Sat Aug 10 22:45:05 2019 -0400
+
+    “switched HOME WITH INDEX
+
+[33mcommit e03d6a5f60778fa195da575007491c74af706b73[m
+Author: brendanleahy <brendanleahy@berkeley.edu>
+Date:   Sat Aug 10 21:37:30 2019 -0400
+
+    previous next working
+
+[33mcommit 4952b8806d047b1ae7ac1b06260302a6f043bd79[m
+Author: brendanleahy <brendanleahy@berkeley.edu>
+Date:   Sat Aug 10 21:08:07 2019 -0400
+
+    clicking on suggestions more or less works
+
+[33mcommit d7b9a20f197f3c81f96f9fef1ced86acd84f2806[m
+Author: brendanleahy <brendanleahy@berkeley.edu>
+Date:   Sat Aug 10 20:32:05 2019 -0400
+
+    working on suggestions and prev/next
+
+[33mcommit f6db8f8cfad765d0442c0ff35483abf52d472d03[m
+Author: brendanleahy <brendanleahy@berkeley.edu>
+Date:   Sat Aug 10 19:38:01 2019 -0400
+
+    filter and original word replacement working
+
+[33mcommit 801b0d527c417e1ef0ed348ea60dca29d63ebb0e[m
+Author: brendanleahy <brendanleahy@berkeley.edu>
+Date:   Thu Aug 8 22:20:32 2019 -0400
+
+    done for 6/8
+
+[33mcommit 2683ef649e4fb94d594cf1c2b89b1a01c6d470cb[m
+Author: brendanleahy <brendanleahy@berkeley.edu>
+Date:   Thu Aug 8 21:38:46 2019 -0400
+
+    added home variant page
+
+[33mcommit a00a557b0ce43976779216659ff6a7b9f1bd4d92[m
+Author: brendanleahy <brendanleahy@berkeley.edu>
+Date:   Thu Aug 8 21:18:12 2019 -0400
+
+    front page does things
+
+[33mcommit c2998e782bbc8ebc9600575e7762569ae3c429cd[m
+Author: brendanleahy <brendanleahy@berkeley.edu>
+Date:   Thu Aug 8 20:17:52 2019 -0400
+
+    working on visual design of both pages
+
+[33mcommit 9a0bd57fca27269aea9137c61e6479d1ce660d34[m
+Merge: 58843e0 a242970
+Author: Brendan Leahy <brendanleahy@berkeley.edu>
+Date:   Thu Aug 8 16:50:43 2019 -0700
+
+    Merge branch 'master' of https://github.com/BFLeahy/CS160finalProjectGroup8
+
+[33mcommit 58843e099ba1ecfb2e0a3899b3820110a627e18e[m
+Author: Brendan Leahy <brendanleahy@berkeley.edu>
+Date:   Thu Aug 8 16:48:55 2019 -0700
+
+    push to upload logo
+
+[33mcommit a242970c817e33eede623acc8842abbf0090a581[m
+Author: brendanleahy <brendanleahy@berkeley.edu>
+Date:   Thu Aug 8 19:48:10 2019 -0400
+
+    uploading logo
+
+[33mcommit dde10c3c817b4ca3ca6fe49e6bca909d9150c531[m
+Author: brendanleahy <brendanleahy@berkeley.edu>
+Date:   Thu Aug 8 19:27:31 2019 -0400
+
+    started layout for home page and editor
+
+[33mcommit f6c3f53562c3d58dafcff65554d25fe1ab2c1149[m
+Author: brendanleahy <brendanleahy@berkeley.edu>
+Date:   Thu Aug 8 18:32:53 2019 -0400
+
+    added a page for the editor
+
+[33mcommit e6a13b8656e888135c88ac063592fceab985d235[m
+Author: brendanleahy <brendanleahy@berkeley.edu>
+Date:   Thu Aug 8 18:21:46 2019 -0400
+
+    started on layout with navbar
+
+[33mcommit 8d80de9043c1d6f943d7bbd8e7798dd8abd18cde[m
+Merge: 6bd423c f7bfbee
+Author: Brendan Leahy <brendanleahy@berkeley.edu>
+Date:   Thu Aug 8 12:07:05 2019 -0700
+
+    Merge branch 'master' of https://github.com/BFLeahy/CS160finalProjectGroup8
+
+[33mcommit 6bd423c50afb00ff945b13264a999db5e9990844[m
+Author: Brendan Leahy <brendanleahy@berkeley.edu>
+Date:   Thu Aug 8 12:05:06 2019 -0700
+
+    added a needed js
+
+[33mcommit f7bfbee1c67ad043abe86825705328b7944c794b[m
+Author: brendanleahy <brendanleahy@berkeley.edu>
+Date:   Thu Aug 8 15:04:33 2019 -0400
+
+    getting set up
+
+[33mcommit 0814694942dd13180c44770a4024b0bf25851f69[m
+Author: Brendan Leahy <brendanleahy@berkeley.edu>
+Date:   Thu Aug 8 11:30:07 2019 -0700
+
+    First commit
