@@ -346,7 +346,10 @@
       var filterButtonObj =  $('#filterButton');
       var highlightedWords = getHighlightedWords("highlight"); 
       var hWIndex = -1;
-   
+      //var hWIndex = 0;
+    
+    //console.log(audience);
+    
   if (audience == null || audience.includes("Please select an audience")) {
     $('#dropdownMenuButton').text("General Public");
   } else {
@@ -354,7 +357,6 @@
   }
     
       $('#p1').on('click', function() {
-        gPriority = "first-priority";
         filterButtonObj.text('Priority one');
         filterButtonObj.css('background-color', 'red');
         var first = document.getElementsByClassName("first-priority");
@@ -376,13 +378,19 @@
           w.style.backgroundColor = "white";
         }
         
-        hWIndex = 0;
+        if (elementToReplace == null) {
+          hWIndex = -1;
+        } else {
+          hWIndex = 0;
+        }
+        
+        
         highlightedWords = getHighlightedWords("first-priority"); 
         
         var w = highlightedWords[hWIndex];
         
         if (!highlightedWords.includes(elementToReplace.textContent)) {
-          console.log(w);
+          //console.log(w);
           var l = document.getElementsByClassName("highlight");
           for (var i = 0; i < l.length; i += 1) {
             var e = l.item(i);
@@ -397,7 +405,6 @@
       });
 
       $('#p2').on('click', function() {
-        gPriority = "second-priority";
         filterButtonObj.text('Priority two');
         filterButtonObj.css('background-color', 'orange');
         var first = document.getElementsByClassName("first-priority");
@@ -419,13 +426,17 @@
           w.style.backgroundColor = "white";
         }
         
-         hWIndex = 0;
+         if (elementToReplace == null) {
+          hWIndex = -1;
+        } else {
+          hWIndex = 0;
+        }
         highlightedWords = getHighlightedWords("second-priority"); 
         
         var w = highlightedWords[hWIndex];
         
         if (!highlightedWords.includes(elementToReplace.textContent)) {
-          console.log(w);
+          //console.log(w);
           var l = document.getElementsByClassName("highlight");
           for (var i = 0; i < l.length; i += 1) {
             var e = l.item(i);
@@ -439,7 +450,6 @@
       });
       
       $('#p3').on('click', function() {
-        gPriority = "third-priority";
         filterButtonObj.text('Priority three'); 
         filterButtonObj.css('background-color', 'yellow')
         var first = document.getElementsByClassName("first-priority");
@@ -461,13 +471,17 @@
           w.style.backgroundColor = colors[priorities[w.textContent]];
         }
         
-        hWIndex = 0;
+         if (elementToReplace == null) {
+          hWIndex = -1;
+        } else {
+          hWIndex = 0;
+        }
         highlightedWords = getHighlightedWords("third-priority"); 
         
         var w = highlightedWords[hWIndex];
         
         if (!highlightedWords.includes(elementToReplace.textContent)) {
-          console.log(w);
+          //console.log(w);
           var l = document.getElementsByClassName("highlight");
           for (var i = 0; i < l.length; i += 1) {
             var e = l.item(i);
@@ -481,26 +495,25 @@
       });
     
      $('#p0').on('click', function() {
-        gPriority = "no";
         filterButtonObj.text('No filter'); 
         filterButtonObj.css('background-color', 'white')
        var first = document.getElementsByClassName("first-priority");
         var lf = first.length;
         for (var i = 0; i < lf; i += 1) {
           var w = first.item(i);
-          w.style.backgroundColor = colors[priorities[w.textContent]];
+          w.style.backgroundColor = "red";
         }
         var s = document.getElementsByClassName("second-priority");
         var ls = s.length;
         for (var i = 0; i < ls; i += 1) {
           var w = s.item(i);
-          w.style.backgroundColor = colors[priorities[w.textContent]];
+          w.style.backgroundColor = "orange";
         }
         var t = document.getElementsByClassName("third-priority");
         var lt = t.length;
         for (var i = 0; i < lt; i += 1) {
           var w = t.item(i);
-          w.style.backgroundColor = colors[priorities[w.textContent]];
+          w.style.backgroundColor = "yellow";
         }
       
         highlightedWords = getHighlightedWords("highlight"); 
@@ -508,7 +521,7 @@
         var w = highlightedWords[hWIndex];
 
         if (!highlightedWords.includes(elementToReplace.textContent)) {
-          console.log(w);
+          //console.log(w);
           var l = document.getElementsByClassName("highlight");
           for (var i = 0; i < l.length; i += 1) {
             var e = l.item(i);
@@ -547,13 +560,10 @@
       });
     
       $('.highlight').click(function(){
-        var tp = priorities[originalify[this.textContent]];
-        if (gPriority == "no" || gPriority == tp) {
-          elementToReplace = this;
-          replaceOriginal(this.textContent);
-          replaceSuggestions(this);     
-          hWIndex = highlightedWords.indexOf(this.textContent); 
-        }
+        elementToReplace = this;
+        replaceOriginal(this.textContent);
+        replaceSuggestions(this);     
+        hWIndex = highlightedWords.indexOf(this.textContent);   
       });
       /* 
          List of changes for undo
@@ -568,9 +578,12 @@
          */
     
       $('#prev').click(function(){
+        
         if (!(hWIndex <= 0)) {
           hWIndex -= 1;
         }
+        
+       
         var w = highlightedWords[hWIndex];
         var l = document.getElementsByClassName("highlight");
         for (var i = 0; i < l.length; i += 1) {
@@ -581,12 +594,20 @@
         }
         replaceOriginal(highlightedWords[hWIndex]);
         replaceSuggestions(elementToReplace);
+        
+        /*
+         if (!(hWIndex <= 0)) {
+          hWIndex -= 1;
+        }
+        */
       });
     
       $('#next').click(function(){
+        
         if (hWIndex != highlightedWords.length - 1) {
           hWIndex += 1;
         }
+        
         var w = highlightedWords[hWIndex];
         var l = document.getElementsByClassName("highlight");
         for (var i = 0; i < l.length; i += 1) {
@@ -597,6 +618,12 @@
         }
         replaceOriginal(highlightedWords[hWIndex]);
         replaceSuggestions(elementToReplace);
+        
+        /*
+        if (hWIndex != highlightedWords.length - 1) {
+          hWIndex += 1;
+        }
+        */
       });
     
       $('#undoButton').click(function() {
@@ -715,11 +742,9 @@
       var replacement = suggestions[i];
       var priority = priorities[replacement];
       var e = document.createElement('li');
-      var ec = document.createElement('div');
-      ec.textContent = replacement;
-      ec.setAttribute('class', 'suggestion');
-      ec.setAttribute('id', i.toString());
-      e.appendChild(ec);
+      e.textContent = replacement;
+      e.setAttribute('class', 'suggestion');
+      e.setAttribute('id', i.toString());
       $('#sList').append(e);
       $('#'+i.toString()).css("background-color", colors[priority]);
     }
@@ -748,6 +773,5 @@
                "clarification":"suggested"};
   undo = [];
   redo = [];
-  gPriority = "no";
 </script>
 </html>
