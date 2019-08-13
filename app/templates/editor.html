@@ -88,9 +88,6 @@
       cursor: pointer;
       border-radius: 8px;
       cursor:pointer;
-      width:fit-content;
-      margin:15px;
-      padding:.2em;
     }
     
     .navbar {
@@ -211,17 +208,17 @@
 
 <body>
   <nav class="navbar navbar-expand-lg navbar-dark" style="padding-top: 0em;">
-    <img class="navbar-brand" src = "{% static 'logo-white.png' %}" style="padding-top:5px;"></img>
+    <img class="navbar-brand" id="logo" src = "{% static 'logo-white.png' %}" style="padding-top:5px;"></img>
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
       </li>
       <li class="nav-item active" style="padding-left:20em;">
-        <button class = "btn" id="undoButton">
+        <button class = "btn">
           <i class="fas fa-undo" style="font-size:25px;color:black;"></i>
         </button>     
       </li>
       <li class="nav-item active">
-        <button class= "btn" id="redoButton">
+        <button class= "btn">
           <i class="fas fa-redo" style="font-size:25px;color:black;"></i>
         </button>
       </li>
@@ -345,7 +342,12 @@
       var highlightedWords = getHighlightedWords("highlight"); 
       var hWIndex = -1;
     
-  $('#dropdownMenuButton').text(audience);
+    console.log(audience);
+  if (audience.includes("Please select an audience")) {
+    $('#dropdownMenuButton').text("General Public");
+  } else {
+    $('#dropdownMenuButton').text(audience);
+  }
     
       $('#p1').on('click', function() {
         filterButtonObj.text('Priority one');
@@ -526,6 +528,7 @@
         replaceOriginal(highlightedWords[hWIndex]);
         replaceSuggestions(elementToReplace);
       });
+    
       $('#undoButton').click(function() {
         var ch = undo.pop();
         if (typeof ch == 'undefined') {
@@ -560,6 +563,7 @@
           }
         }
       });
+>>>>>>> 59e65bbd6a38215b89c952d2ef5b60296b03e745
     });
   
   function getAudience() {
@@ -633,19 +637,13 @@
       var replacement = suggestions[i];
       var priority = priorities[replacement];
       var e = document.createElement('li');
-      var ec = document.createElement('div');
-      e.setAttribute("style", "display:inline-block;margin-right:2em;")
-      ec.textContent = replacement;
-      ec.setAttribute('class', 'suggestion');
-      ec.setAttribute('id', i.toString());
-      e.appendChild(ec);
+      e.textContent = replacement;
+      e.setAttribute('class', 'suggestion');
+      e.setAttribute('id', i.toString());
       $('#sList').append(e);
-      $('#'+i.toString()).css("background-color", colors[priority]);
       $('#'+i.toString()).css("background-color", colors[priority]);
     }
     $('.suggestion').click(function() {
-      var original = elementToReplace.textContent;
-      var rep = this.textContent;
       elementToReplace.textContent = this.textContent;
       elementToReplace.style.backgroundColor = colors[priorities[this.textContent]];
       undo.push([original, rep]);
@@ -665,7 +663,5 @@
   priorities = {"generative":"second-priority", "able to produce":"suggested", "procreative":"suggested","constituencies":"first-priority",
                "groups":"suggested", "epistemologies":"first-priority", "theories of knowledge":"suggested", "articulation":"third-priority",
                "clarification":"suggested"};
-  undo = [];
-  redo = [];
 </script>
 </html>
