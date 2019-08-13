@@ -742,9 +742,12 @@
       var replacement = suggestions[i];
       var priority = priorities[replacement];
       var e = document.createElement('li');
-      e.textContent = replacement;
-      e.setAttribute('class', 'suggestion');
-      e.setAttribute('id', i.toString());
+      var ec = document.createElement('div');
+      ec.textContent = replacement;
+      ec.setAttribute('class', 'suggestion');
+      ec.setAttribute('id', i.toString());
+      e.setAttribute('style', "width:100%");
+      e.appendChild(ec);
       $('#sList').append(e);
       $('#'+i.toString()).css("background-color", colors[priority]);
     }
