@@ -357,6 +357,7 @@
   }
     
       $('#p1').on('click', function() {
+        gPriority = "first-priority";
         filterButtonObj.text('Priority one');
         filterButtonObj.css('background-color', 'red');
         var first = document.getElementsByClassName("first-priority");
@@ -388,13 +389,13 @@
         highlightedWords = getHighlightedWords("first-priority"); 
         
         var w = highlightedWords[hWIndex];
-        
+       
         if (!highlightedWords.includes(elementToReplace.textContent)) {
           //console.log(w);
           var l = document.getElementsByClassName("highlight");
           for (var i = 0; i < l.length; i += 1) {
             var e = l.item(i);
-            if (originalify[e.textContent] === w) {
+            if (e.textContent == w) {
               elementToReplace = e;
             }
           }
@@ -405,6 +406,7 @@
       });
 
       $('#p2').on('click', function() {
+        gPriority = "second-priority";
         filterButtonObj.text('Priority two');
         filterButtonObj.css('background-color', 'orange');
         var first = document.getElementsByClassName("first-priority");
@@ -440,7 +442,7 @@
           var l = document.getElementsByClassName("highlight");
           for (var i = 0; i < l.length; i += 1) {
             var e = l.item(i);
-            if (originalify[e.textContent] === w) {
+            if (e.textContent == w) {
               elementToReplace = e;
             }
           }
@@ -450,6 +452,7 @@
       });
       
       $('#p3').on('click', function() {
+        gPriority = "third-priority";
         filterButtonObj.text('Priority three'); 
         filterButtonObj.css('background-color', 'yellow')
         var first = document.getElementsByClassName("first-priority");
@@ -485,7 +488,7 @@
           var l = document.getElementsByClassName("highlight");
           for (var i = 0; i < l.length; i += 1) {
             var e = l.item(i);
-            if (originalify[e.textContent] === w) {
+            if (e.textContent == w) {
               elementToReplace = e;
             }
           }
@@ -495,43 +498,30 @@
       });
     
      $('#p0').on('click', function() {
+        gPriority = "zero";
         filterButtonObj.text('No filter'); 
         filterButtonObj.css('background-color', 'white')
        var first = document.getElementsByClassName("first-priority");
         var lf = first.length;
         for (var i = 0; i < lf; i += 1) {
           var w = first.item(i);
-          w.style.backgroundColor = "red";
+          w.style.backgroundColor = colors[priorities[w.textContent]];;
         }
         var s = document.getElementsByClassName("second-priority");
         var ls = s.length;
         for (var i = 0; i < ls; i += 1) {
           var w = s.item(i);
-          w.style.backgroundColor = "orange";
+          w.style.backgroundColor = colors[priorities[w.textContent]];
         }
         var t = document.getElementsByClassName("third-priority");
         var lt = t.length;
         for (var i = 0; i < lt; i += 1) {
           var w = t.item(i);
-          w.style.backgroundColor = "yellow";
+          w.style.backgroundColor = colors[priorities[w.textContent]];
         }
       
-        highlightedWords = getHighlightedWords("highlight"); 
-       
-        var w = highlightedWords[hWIndex];
-
-        if (!highlightedWords.includes(elementToReplace.textContent)) {
-          //console.log(w);
-          var l = document.getElementsByClassName("highlight");
-          for (var i = 0; i < l.length; i += 1) {
-            var e = l.item(i);
-            if (originalify[e.textContent] === w) {
-              elementToReplace = e;
-            }
-          }
-          replaceOriginal(w);
-          replaceSuggestions(elementToReplace);
-        }
+        highlightedWords = getHighlightedWords("highlight");
+        hWIndex = highlightedWords.indexOf(elementToReplace.textContent);
       });
     
     // drop-down menu
@@ -588,7 +578,7 @@
         var l = document.getElementsByClassName("highlight");
         for (var i = 0; i < l.length; i += 1) {
           var e = l.item(i);
-          if (originalify[e.textContent] == w) {
+          if (e.textContent == w) {
             elementToReplace = e;
           }
         }
@@ -612,7 +602,7 @@
         var l = document.getElementsByClassName("highlight");
         for (var i = 0; i < l.length; i += 1) {
           var e = l.item(i);
-          if (originalify[e.textContent] === w) {
+          if (e.textContent == w) {
             elementToReplace = e;
           }
         }
@@ -639,7 +629,9 @@
           var e = l.item(i);
           if (e.textContent == r) {
             e.textContent = o;
-            e.style.backgroundColor = colors[priorities[o]];
+            if (gPriority == "zero" || gPriority == priorities[o]) {
+              e.style.backgroundColor = colors[priorities[o]];
+            }
           }
         }
       });
@@ -657,7 +649,9 @@
           var e = l.item(i);
           if (e.textContent == o) {
             e.textContent = r;
-            e.style.backgroundColor = colors[priorities[r]];
+            if (gPriority == "zero" || gPriority == priorities[r]) {
+              e.style.backgroundColor = colors[priorities[r]];
+            }
           }
         }
       });
@@ -707,7 +701,6 @@
         highlightedWords.push(w);
       }
     }
-    console.log(highlightedWords);
     return highlightedWords; 
   }
   
@@ -764,6 +757,7 @@
   }
   });
   
+  gPriority = "zero";
   elementToReplace = null;
   colors = {"first-priority": "red", "second-priority":"orange", "third-priority":"yellow","suggested":"lightgreen"};
   rList = {"generative" : ["able to produce", "procreative"], "constituencies": ["groups"], "epistemologies":["theories of knowledge"],
