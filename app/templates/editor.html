@@ -84,10 +84,13 @@
     }
     
     .suggestion {
-      margin: 0px;
+      margin: 15px;
       cursor: pointer;
       border-radius: 8px;
       cursor:pointer;
+      width: fit-content;
+      padding : .2em;
+      display: inline-block;
     }
     
     .navbar {
@@ -213,12 +216,12 @@
       <li class="nav-item active">
       </li>
       <li class="nav-item active" style="padding-left:20em;">
-        <button class = "btn">
+        <button class= "btn" id="undoButton">
           <i class="fas fa-undo" style="font-size:25px;color:black;"></i>
         </button>     
       </li>
       <li class="nav-item active">
-        <button class= "btn">
+        <button class = "btn" id="redoButton">
           <i class="fas fa-redo" style="font-size:25px;color:black;"></i>
         </button>
       </li>
@@ -563,7 +566,6 @@
           }
         }
       });
->>>>>>> 59e65bbd6a38215b89c952d2ef5b60296b03e745
     });
   
   function getAudience() {
@@ -644,9 +646,11 @@
       $('#'+i.toString()).css("background-color", colors[priority]);
     }
     $('.suggestion').click(function() {
+      var o = elementToReplace.textContent;
+      var r = this.textContent;
       elementToReplace.textContent = this.textContent;
       elementToReplace.style.backgroundColor = colors[priorities[this.textContent]];
-      undo.push([original, rep]);
+      undo.push([o, r]);
       if (redo.length > 0) {
         redo = [];
       }
@@ -663,5 +667,7 @@
   priorities = {"generative":"second-priority", "able to produce":"suggested", "procreative":"suggested","constituencies":"first-priority",
                "groups":"suggested", "epistemologies":"first-priority", "theories of knowledge":"suggested", "articulation":"third-priority",
                "clarification":"suggested"};
+  undo = [];
+  redo = [];
 </script>
 </html>
