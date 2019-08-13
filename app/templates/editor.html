@@ -211,7 +211,9 @@
 
 <body>
   <nav class="navbar navbar-expand-lg navbar-dark" style="padding-top: 0em;">
-    <img class="navbar-brand" id="logo" src = "{% static 'logo-white.png' %}" style="padding-top:5px;"></img>
+    <div id="logo">
+      <img class="navbar-brand" src = "{% static 'logo-white.png' %}" style="padding-top:5px;"></img>
+    </div>
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
       </li>
@@ -345,7 +347,7 @@
       var highlightedWords = getHighlightedWords("highlight"); 
       var hWIndex = -1;
     
-    console.log(audience);
+    //console.log(audience);
   if (audience.includes("Please select an audience")) {
     $('#dropdownMenuButton').text("General Public");
   } else {
@@ -374,9 +376,23 @@
           w.style.backgroundColor = "white";
         }
         
-        hWIndex = -1;
+        hWIndex = 0;
         highlightedWords = getHighlightedWords("first-priority"); 
-        replaceOriginal(highlightedWords[hWIndex]);
+        
+        var w = highlightedWords[hWIndex];
+        
+        if (!highlightedWords.includes(elementToReplace.textContent)) {
+          console.log(w);
+          var l = document.getElementsByClassName("highlight");
+          for (var i = 0; i < l.length; i += 1) {
+            var e = l.item(i);
+            if (originalify[e.textContent] === w) {
+              elementToReplace = e;
+            }
+          }
+          replaceOriginal(w);
+          replaceSuggestions(elementToReplace);
+        }
    
       });
 
@@ -402,8 +418,23 @@
           w.style.backgroundColor = "white";
         }
         
-        hWIndex = -1;
+         hWIndex = 0;
         highlightedWords = getHighlightedWords("second-priority"); 
+        
+        var w = highlightedWords[hWIndex];
+        
+        if (!highlightedWords.includes(elementToReplace.textContent)) {
+          console.log(w);
+          var l = document.getElementsByClassName("highlight");
+          for (var i = 0; i < l.length; i += 1) {
+            var e = l.item(i);
+            if (originalify[e.textContent] === w) {
+              elementToReplace = e;
+            }
+          }
+          replaceOriginal(w);
+          replaceSuggestions(elementToReplace);
+        }
       });
       
       $('#p3').on('click', function() {
@@ -428,8 +459,23 @@
           w.style.backgroundColor = colors[priorities[w.textContent]];
         }
         
-        hWIndex = -1;
+        hWIndex = 0;
         highlightedWords = getHighlightedWords("third-priority"); 
+        
+        var w = highlightedWords[hWIndex];
+        
+        if (!highlightedWords.includes(elementToReplace.textContent)) {
+          console.log(w);
+          var l = document.getElementsByClassName("highlight");
+          for (var i = 0; i < l.length; i += 1) {
+            var e = l.item(i);
+            if (originalify[e.textContent] === w) {
+              elementToReplace = e;
+            }
+          }
+          replaceOriginal(w);
+          replaceSuggestions(elementToReplace);
+        }
       });
     
      $('#p0').on('click', function() {
@@ -454,8 +500,22 @@
           w.style.backgroundColor = "yellow";
         }
       
-        hWIndex = -1;
         highlightedWords = getHighlightedWords("highlight"); 
+       
+        var w = highlightedWords[hWIndex];
+
+        if (!highlightedWords.includes(elementToReplace.textContent)) {
+          console.log(w);
+          var l = document.getElementsByClassName("highlight");
+          for (var i = 0; i < l.length; i += 1) {
+            var e = l.item(i);
+            if (originalify[e.textContent] === w) {
+              elementToReplace = e;
+            }
+          }
+          replaceOriginal(w);
+          replaceSuggestions(elementToReplace);
+        }
       });
     
     // drop-down menu
@@ -550,6 +610,7 @@
           }
         }
       });
+    
       $('#redoButton').click(function() {
         var ch = redo.pop();
         if (typeof ch == 'undefined') {
@@ -567,6 +628,9 @@
           }
         }
       });
+    
+    $('#logo').click(function() {
+     document.location.href = 'https://CS160finalProjectGroup8-david-lin770443.codeanyapp.com';
     });
   
   function getAudience() {
@@ -593,7 +657,7 @@
     var highlightedWords = []
     var elements = $("." + highlightClass).show();
     for (var i = 0; i < elements.length; i++) {
-      highlightedWords.push(elements[i].textContent.replace(/ /g, ''));
+      highlightedWords.push(elements[i].textContentin.replace(/ /g, ''));
     }
     return highlightedWords; 
   }
@@ -657,6 +721,7 @@
       }
     });
   }
+  });
   
   elementToReplace = null;
   colors = {"first-priority": "red", "second-priority":"orange", "third-priority":"yellow","suggested":"lightgreen"};
