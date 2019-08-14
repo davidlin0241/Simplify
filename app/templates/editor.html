@@ -87,7 +87,6 @@
       margin: 15px;
       cursor: pointer;
       border-radius: 8px;
-      cursor:pointer;
       width: fit-content;
       padding : .2em;
       display: inline-block;
@@ -141,7 +140,6 @@
       cursor: pointer;
       border-radius: 8px;
       padding: 3px;
-      cursor:pointer;
     }
     
     /* Popup box BEGIN */
@@ -629,7 +627,7 @@
           var e = l.item(i);
           if (e.textContent == r) {
             e.textContent = o;
-            if (gPriority == "zero" || gPriority == priorities[o]) {
+            if (gPriority == "zero" || gPriority == priorities[originalify[o]]) {
               e.style.backgroundColor = colors[priorities[o]];
             }
           }
@@ -649,7 +647,8 @@
           var e = l.item(i);
           if (e.textContent == o) {
             e.textContent = r;
-            if (gPriority == "zero" || gPriority == priorities[r]) {
+            if (gPriority == "zero" || gPriority == priorities[originalify[r]]) {
+              console.log(colors[priorities[r]]);
               e.style.backgroundColor = colors[priorities[r]];
             }
           }
