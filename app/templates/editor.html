@@ -570,8 +570,11 @@
         if (!(hWIndex <= 0)) {
           hWIndex -= 1;
         }
-        
-       
+        var x = gPriority;
+        if (x == "zero") {
+          x = "highlight";
+        }
+        highlightedWords = getHighlightedWords(x);
         var w = highlightedWords[hWIndex];
         var l = document.getElementsByClassName("highlight");
         for (var i = 0; i < l.length; i += 1) {
@@ -595,8 +598,13 @@
         if (hWIndex != highlightedWords.length - 1) {
           hWIndex += 1;
         }
-        
+        var x = gPriority;
+        if (x == "zero") {
+          x = "highlight";
+        }
+        highlightedWords = getHighlightedWords(x);
         var w = highlightedWords[hWIndex];
+        console.log(highlightedWords);
         var l = document.getElementsByClassName("highlight");
         for (var i = 0; i < l.length; i += 1) {
           var e = l.item(i);
