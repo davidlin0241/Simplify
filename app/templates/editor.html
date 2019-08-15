@@ -289,7 +289,7 @@
       reconsideration of the practices of engagement, <p class="highlight third-priority">articulation</p> 
       and translation in other contexts, we offer designers and
       researchers ways of understanding use and design practice
-      to respond to global connectivity and movement.
+      to respond to global <p class="highlight third-priority">connectivity</p> and movement.
     </div>
     <div class="sidebar container">
       <div class="row align-items-center" style="height:10%;border-bottom:2px solid #004d40;">
@@ -770,14 +770,20 @@
   gPriority = "zero";
   elementToReplace = null;
   colors = {"first-priority": "red", "second-priority":"orange", "third-priority":"yellow","suggested":"lightgreen"};
-  rList = {"generative" : ["able to produce", "procreative"], "constituencies": ["groups"], "epistemologies":["theories of knowledge"],
-          "articulation": ["clarification"]};
-  originalify = {"able to produce":"generative", "procreative":"generative", "generative":"generative", "groups": "constituencies",
-                "constituencies":"constituencies", "epistemologies":"epistemologies", "theories of knowledge": "epistemologies",
-                "articulation":"articulation","clarification":"articulation"};
-  priorities = {"generative":"second-priority", "able to produce":"suggested", "procreative":"suggested","constituencies":"first-priority",
-               "groups":"suggested", "epistemologies":"first-priority", "theories of knowledge":"suggested", "articulation":"third-priority",
-               "clarification":"suggested"};
+  
+  rList = {"generative" : ["creative", "procreative", "able to produce"], "constituencies": ["groups", "populations", "publics"], "epistemologies":["philosophies", "theories of knowledge"],
+          "articulation": ["expression", "formulation", "clarification"], "connectivity": ["connectedness"]};
+  
+  originalify = {"creative":"generative","able to produce":"generative", "procreative":"generative", "generative":"generative", "groups": "constituencies",
+                 "populations":"constituencies","publics":"constituencies", "constituencies":"constituencies", "epistemologies":"epistemologies",
+                 "theories of knowledge": "epistemologies", "philosophies":"epistemologies", "articulation":"articulation","clarification":"articulation",
+                 "expression":"articulation","formulation":"articulation", "connectivity":"connectivity", "connectedness":"connectivity"};
+  
+  priorities = {"generative":"second-priority", "able to produce":"suggested", "creative":"suggested", "procreative":"suggested","constituencies":"first-priority",
+               "groups":"suggested", "populations":"suggested", "publics":"suggested", "epistemologies":"first-priority", "theories of knowledge":"suggested",
+                "philosophies":"suggested", "articulation":"third-priority", "expression":"suggested", "formulation":"suggested","clarification":"suggested", "connectivity":"third-priority",
+               "connectedness":"suggested"};
+  
   undo = [];
   redo = [];
 </script>
