@@ -15,3 +15,12 @@ def conc(request):
 
 def conc2(request):
   return render(request, 'conc2.html')
+
+def child(request):
+  return render(request, 'edit/child.html')
+
+def general(request):
+  return render(request, 'edit/general.html')
+
+def teen(request):
+  return render(request, 'edit/teen.html')

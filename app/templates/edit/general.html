@@ -44,6 +44,7 @@
       padding-right: 3em;
       background: white;
       border-radius: 9px;
+      line-height:2;
     }
     
     .sidebar {
@@ -281,14 +282,14 @@
       designs and methods engage new <p class="highlight first-priority">constituencies</p>, both our
       design and analytical practices face significant challenges.
       We offer postcolonial computing as an analytical orientation to better understand these challenges. This
-      <p class="highlight second-priority">analytic</p> orientation inspires four key shifts in our approach
+      <p class="highlight third-priority">analytic</p> orientation inspires four key shifts in our approach
       to HCI4D efforts: <p class = "highlight second-priority">generative</p> models of culture,
       development as a historical program, uneven economic
       relations, and cultural <p class="highlight first-priority">epistemologies</p>. Then, through
       reconsideration of the practices of engagement, <p class="highlight third-priority">articulation</p> 
       and translation in other contexts, we offer designers and
       researchers ways of understanding use and design practice
-      to respond to global <p class="highlight third-priority">connectivity</p> and movement.
+      to respond to global connectivity and movement.
     </div>
     <div class="sidebar container">
       <div class="row align-items-center" style="height:10%;border-bottom:2px solid #004d40;">
@@ -550,10 +551,13 @@
       });
     
       $('.highlight').click(function(){
-        elementToReplace = this;
-        replaceOriginal(this.textContent);
-        replaceSuggestions(this);     
-        hWIndex = highlightedWords.indexOf(this.textContent);   
+        var p = priorities[originalify[this.textContent]];
+        if (gPriority == "zero" || gPriority == p) {
+          elementToReplace = this;
+          replaceOriginal(this.textContent);
+          replaceSuggestions(this);     
+          hWIndex = highlightedWords.indexOf(this.textContent);
+        }  
       });
       /* 
          List of changes for undo
@@ -785,7 +789,7 @@
                "groups":"suggested", "populations":"suggested", "publics":"suggested", "epistemologies":"first-priority", "theories of knowledge":"suggested",
                 "philosophies":"suggested", "articulation":"third-priority", "expression":"suggested", "formulation":"suggested","clarification":"suggested",
                 "connectivity":"third-priority","connectedness":"suggested",
-                "analytic":"second-priority", "rational":"suggested", "logical":"suggested", "systematic":"suggested",
+                "analytic":"third-priority", "rational":"suggested", "logical":"suggested", "systematic":"suggested",
                "orientation":"third-priority","focus":"suggested","emphasis":"suggested","tendency":"suggested"};
   
   undo = [];

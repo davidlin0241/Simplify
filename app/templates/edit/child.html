@@ -44,6 +44,7 @@
       padding-right: 3em;
       background: white;
       border-radius: 9px;
+      line-height:2;
     }
     
     .sidebar {
@@ -281,11 +282,11 @@
       designs and methods engage new <p class="highlight first-priority">constituencies</p>, both our
       design and analytical practices face significant challenges.
       We offer postcolonial computing as an analytical orientation to better understand these challenges. This
-      <p class="highlight second-priority">analytic</p> orientation inspires four key shifts in our approach
-      to HCI4D efforts: <p class = "highlight second-priority">generative</p> models of culture,
+      <p class="highlight first-priority">analytic</p> orientation inspires four key shifts in our approach
+      to HCI4D efforts: <p class = "highlight first-priority">generative</p> models of culture,
       development as a historical program, uneven economic
       relations, and cultural <p class="highlight first-priority">epistemologies</p>. Then, through
-      reconsideration of the practices of engagement, <p class="highlight third-priority">articulation</p> 
+      reconsideration of the practices of <p class="highlight third-priority">engagement</p>, <p class="highlight second-priority">articulation</p> 
       and translation in other contexts, we offer designers and
       researchers ways of understanding use and design practice
       to respond to global <p class="highlight third-priority">connectivity</p> and movement.
@@ -550,10 +551,13 @@
       });
     
       $('.highlight').click(function(){
-        elementToReplace = this;
-        replaceOriginal(this.textContent);
-        replaceSuggestions(this);     
-        hWIndex = highlightedWords.indexOf(this.textContent);   
+        var p = priorities[originalify[this.textContent]];
+        if (gPriority == "zero" || gPriority == p) {
+          elementToReplace = this;
+          replaceOriginal(this.textContent);
+          replaceSuggestions(this);     
+          hWIndex = highlightedWords.indexOf(this.textContent);
+        }  
       });
       /* 
          List of changes for undo
@@ -772,21 +776,23 @@
   
   rList = {"generative" : ["creative", "procreative", "able to produce"], "constituencies": ["groups", "populations", "publics"], "epistemologies":["philosophies", "theories of knowledge"],
           "articulation": ["expression", "formulation", "clarification"], "connectivity": ["connectedness"], "analytic":["rational","logical","systematic"],
-          "orientation":["focus","emphasis","tendency"]};
+          "orientation":["focus","emphasis","tendency"], "engagement":["action","contact"]};
   
   originalify = {"creative":"generative","able to produce":"generative", "procreative":"generative", "generative":"generative", "groups": "constituencies",
                  "populations":"constituencies","publics":"constituencies", "constituencies":"constituencies", "epistemologies":"epistemologies",
                  "theories of knowledge": "epistemologies", "philosophies":"epistemologies", "articulation":"articulation","clarification":"articulation",
                  "expression":"articulation","formulation":"articulation", "connectivity":"connectivity", "connectedness":"connectivity",
                 "analytic":"analytic", "rational":"analytic","logical":"analytic","systematic":"analytic",
-                "orientation":"orientation","focus":"orientation","emphasis":"orientation","tendency":"orientation"};
+                "orientation":"orientation","focus":"orientation","emphasis":"orientation","tendency":"orientation",
+                "engagement":"engagement","action":"engagement","contact":"engagement"};
   
-  priorities = {"generative":"second-priority", "able to produce":"suggested", "creative":"suggested", "procreative":"suggested","constituencies":"first-priority",
+  priorities = {"generative":"first-priority", "able to produce":"suggested", "creative":"suggested", "procreative":"suggested","constituencies":"first-priority",
                "groups":"suggested", "populations":"suggested", "publics":"suggested", "epistemologies":"first-priority", "theories of knowledge":"suggested",
-                "philosophies":"suggested", "articulation":"third-priority", "expression":"suggested", "formulation":"suggested","clarification":"suggested",
+                "philosophies":"suggested", "articulation":"second-priority", "expression":"suggested", "formulation":"suggested","clarification":"suggested",
                 "connectivity":"third-priority","connectedness":"suggested",
-                "analytic":"second-priority", "rational":"suggested", "logical":"suggested", "systematic":"suggested",
-               "orientation":"third-priority","focus":"suggested","emphasis":"suggested","tendency":"suggested"};
+                "analytic":"first-priority", "rational":"suggested", "logical":"suggested", "systematic":"suggested",
+               "orientation":"second-priority","focus":"suggested","emphasis":"suggested","tendency":"suggested",
+               "engagement":"third-priority","action":"suggested","contact":"suggested"};
   
   undo = [];
   redo = [];

@@ -7,4 +7,7 @@ urlpatterns = [
     path('home/', views.home, name="home"),
     path('conc/', views.conc, name="conc"),
     path('conc2/', views.conc2, name="conc2"),
+    path('edit/child/', views.child, name="cEditor"),
+    path('edit/general/', views.general, name="gEditor"),
+    path('edit/teen/', views.teen, name="tEditor"),
 ]
