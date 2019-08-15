@@ -1,0 +1,772 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Simplify</title>
+  
+  <script src="{% static '/vendors/jquery/jquery-3.3.1.min.js' %}"></script>
+	<script src="{% static '/vendors/jquery-ui/jquery-ui.min.js' %}"></script>
+  <script src="{% static '/vendors/popper/popper.min.js' %}"></script>
+  <script src="{% static '/vendors/bootstrap/js/bootstrap.bundle.js' %}"></script>
+  <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+
+	<link href="https://fonts.googleapis.com/css?family=Fira+Sans" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="{% static '/vendors/bootstrap/css/bootstrap.css' %}" />
+	<link rel="stylesheet" type="text/css" href="{% static '/css/main.css' %}" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+	<style type="text/css">
+    body, html {
+      padding-top: 0em;
+      height: 100%;
+    }
+    
+    
+    .box {
+      display: flex;
+      height: 91.3%;
+      width: 100%;
+      flex-direction:row;
+      background: #39796b;
+      justify-content: space-evenly;
+      align-items: stretch;
+      align-content: stretch;
+      padding:1em;
+      
+    }
+    
+    .area {
+      width: 75%;
+      padding-top: 2em;
+      padding-left: 3em;
+      padding-right: 3em;
+      background: white;
+      border-radius: 9px;
+    }
+    
+    .sidebar {
+      width: 23%;
+      background: white;
+      border-radius: 9px;
+      
+    }
+    
+    .first-priority {
+      margin: 0px;
+      display:inline;
+      
+      cursor: pointer;
+      border-radius: 8px;
+      padding: 3px;
+      background-color: red;
+    }
+    
+    .second-priority {
+      margin: 0px;
+      display:inline;
+      
+      cursor: pointer;
+      border-radius: 8px;
+      padding: 3px;
+      background-color: orange;
+    }
+    
+    .third-priority {
+      margin: 0px;
+      display:inline;
+      
+      cursor: pointer;
+      border-radius: 8px;
+      padding: 3px;
+      background-color: yellow;
+    }
+    
+    .suggestion {
+      margin: 15px;
+      cursor: pointer;
+      border-radius: 8px;
+      width: fit-content;
+      padding : .2em;
+      display: inline-block;
+    }
+    
+    .navbar {
+      background-color: #004d40;
+    }
+    
+    .nav-item {
+      padding: 1em;
+     }
+    
+    #p1 {
+      background-color: red;
+    }
+    
+    #p2 {
+      background-color: orange;
+    }
+    
+    #p3 {
+      background-color: yellow;
+    }
+    
+    #dropdownMenuButton {
+      color: black;
+      border-radius: 8px;
+      border: 2px solid black ;
+      cursor: pointer;
+      background-color: white; 
+      margin-right: 20px;
+    }
+    
+    .btn-primary {
+      border: 2px solid #004d40 ;
+      background-color: white; 
+      color: black;
+    }
+    .btn {
+      position: 
+    }
+    
+    #help {
+      border: 2px solid black;
+    }
+    
+    #original {
+      margin: 0px;
+      display:inline;
+      cursor: pointer;
+      border-radius: 8px;
+      padding: 3px;
+    }
+    
+    /* Popup box BEGIN 
+    Source: https://html-online.com/articles/simple-popup-box/
+    Reused code relating to the popups
+    */
+     .hover_bkgr_fricc{
+      background:rgba(0,0,0,.4);
+      cursor:pointer;
+      display:none;
+      height:100%;
+      position:fixed;
+      text-align:center;
+      top:0;
+      width:100%;
+      z-index:10000;
+    }
+    
+    .hover_bkgr_fricc .helper{
+        display:inline-block;
+        height:100%;
+        vertical-align:middle;
+    }
+    
+    .hover_bkgr_fricc > div {
+        background-color: #fff;
+        box-shadow: 10px 10px 60px #555;
+        display: inline-block;
+        height: auto;
+        max-width: 669px;
+        min-height: 100px;
+        vertical-align: middle;
+        width: 60%;
+        position: relative;
+        border-radius: 8px;
+        padding: 15px 5%;
+    }
+    .popupCloseButton {
+        background-color: #fff;
+        border: 3px solid #999;
+        border-radius: 50px;
+        cursor: pointer;
+        display: inline-block;
+        font-family: arial;
+        font-weight: bold;
+        position: absolute;
+        top: -20px;
+        right: -20px;
+        font-size: 25px;
+        line-height: 30px;
+        width: 30px;
+        height: 30px;
+        text-align: center;
+    }
+    .popupCloseButton:hover {
+        background-color: #ccc;
+    }
+    .trigger_popup_fricc {
+        cursor: pointer;
+        font-size: 20px;
+        margin: 20px;
+        display: inline-block;
+        font-weight: bold;
+    }
+    /* Popup box END */
+    
+	</style>
+
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark" style="padding-top: 0em;">
+    <div id="logo">
+      <img class="navbar-brand" src = "{% static 'logo-white.png' %}" style="padding-top:5px;cursor:pointer;"></img>
+    </div>
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+      </li>
+      <li class="nav-item active" style="padding-left:20em;">
+        <button class= "btn" id="undoButton">
+          <i class="fas fa-undo" style="font-size:25px;color:black;"></i>
+        </button>     
+      </li>
+      <li class="nav-item active">
+        <button class = "btn" id="redoButton">
+          <i class="fas fa-redo" style="font-size:25px;color:black;"></i>
+        </button>
+      </li>
+    </ul>
+  <div class="dropdown">
+          <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Dropdown button
+          </button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+             <a class="dropdown-item" id="first" href="#">Children</a>
+             <a class="dropdown-item" id="second" href="#">Teenagers</a>
+             <a class="dropdown-item" id="third" href="#">General Public</a>
+          </div>
+        </div>
+  
+    <a class="trigger_popup_fricc">
+      <button class="btn btn-primary" id = "help">
+        Help
+      </button>
+    </a>
+      <div class="hover_bkgr_fricc">
+        <span class="helper"></span>
+        <div>
+            <div class="popupCloseButton">X</div>
+            <div style="background-color:red;">
+              Priority one - Highly recommended words to change for your audience
+            </div>
+          
+            <div style="background-color:orange;">
+              Priority two - Decently recommended 
+            </div>
+          
+            <div style="background-color:yellow;">
+              Priority three - Optional
+            </div>
+          
+            <p> </p>
+            <p>Depending on the audience, the suggestions and priority of words change. </p>
+            <p>Click on a suggested word (under "Suggestions") to swap it with the original word. </p>
+            <p>
+              The filter button determines which set (out of red, orange, and yellow) of highlighted words are shown and are abled to be jumped
+              to via the "Previous word" and "Next word" functions. 
+            </p>
+        </div>
+      </div>
+  
+    
+  
+  </nav>
+  
+  <div class="box">
+    <div class="area">
+      <p class="highlight second-priority" style="font-size:50px"> Much obliged for your observance. </p>
+    </div>
+    <div class="sidebar container">
+      <div class="row align-items-center" style="height:10%;border-bottom:2px solid #004d40;">
+        <div class="col">
+          <button class="btn btn-primary" id="prev">
+            Previous word
+          </button>
+        </div>
+        <div class="col" align="right">
+          <button class="btn btn-primary" id="next">
+            Next word
+          </button>
+        </div>
+      </div>
+      <div class="row align-items-center" style="height:10%;">
+        <div class="col" align="center">
+          <div id="original">
+          
+          </div>
+        </div>
+      </div>
+      <div class="row" style="height:10%; border-top:2px solid #39796b">
+        <div class="col">
+          Suggestions:
+        </div>
+      </div>
+      <div class="row" style="height:60%;">
+        <div class="col">
+          <ul id="sList" style="list-style-type:none;text-align:center;padding-left:0;">
+            
+          </ul>
+        </div>
+      </div>
+      <div class="row align-items-center justify-content-center" style="height:10%;border-top:2px solid #004d40">
+        <div class="column dropup">
+          <button type="button" id="filterButton" align="center" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Select filter
+          </button>
+          <div class="dropdown-menu" aria-labelledby="filterButton">
+            <a class="dropdown-item" href="#" id="p1">Priority one</a>
+            <a class="dropdown-item" href="#" id="p2">Priority two</a>
+            <a class="dropdown-item" href="#" id="p3">Priority three</a>
+            <a class="dropdown-item" href="#" id="p0">No filter</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+<script>
+  //socket.send("hi")
+  $(document).ready(function() {
+    
+      var audience = getAudience();
+      var filterButtonObj =  $('#filterButton');
+      var highlightedWords = getHighlightedWords("highlight"); 
+      var hWIndex = -1;
+      //var hWIndex = 0;
+    
+    //console.log(audience);
+    
+  if (audience == null || audience.includes("Please select an audience")) {
+    $('#dropdownMenuButton').text("General Public");
+  } else {
+    $('#dropdownMenuButton').text(audience);
+  }
+    
+      $('#p1').on('click', function() {
+        gPriority = "first-priority";
+        filterButtonObj.text('Priority one');
+        filterButtonObj.css('background-color', 'red');
+        var first = document.getElementsByClassName("first-priority");
+        var lf = first.length;
+        for (var i = 0; i < lf; i += 1) {
+          var w = first.item(i);
+          w.style.backgroundColor = colors[priorities[w.textContent]];
+        }
+        var s = document.getElementsByClassName("second-priority");
+        var ls = s.length;
+        for (var i = 0; i < ls; i += 1) {
+          var w = s.item(i);
+          w.style.backgroundColor = "white";
+        }
+        var t = document.getElementsByClassName("third-priority");
+        var lt = t.length;
+        for (var i = 0; i < lt; i += 1) {
+          var w = t.item(i);
+          w.style.backgroundColor = "white";
+        }
+        
+        if (elementToReplace == null) {
+          hWIndex = -1;
+        } else {
+          hWIndex = 0;
+        }
+        
+        
+        highlightedWords = getHighlightedWords("first-priority"); 
+        
+        var w = highlightedWords[hWIndex];
+       
+        if (!highlightedWords.includes(elementToReplace.textContent)) {
+          //console.log(w);
+          var l = document.getElementsByClassName("highlight");
+          for (var i = 0; i < l.length; i += 1) {
+            var e = l.item(i);
+            if (e.textContent == w) {
+              elementToReplace = e;
+            }
+          }
+          replaceOriginal(w);
+          replaceSuggestions(elementToReplace);
+        }
+   
+      });
+
+      $('#p2').on('click', function() {
+        gPriority = "second-priority";
+        filterButtonObj.text('Priority two');
+        filterButtonObj.css('background-color', 'orange');
+        var first = document.getElementsByClassName("first-priority");
+        var lf = first.length;
+        for (var i = 0; i < lf; i += 1) {
+          var w = first.item(i);
+          w.style.backgroundColor = "white";
+        }
+        var s = document.getElementsByClassName("second-priority");
+        var ls = s.length;
+        for (var i = 0; i < ls; i += 1) {
+          var w = s.item(i);
+          w.style.backgroundColor = colors[priorities[w.textContent]];
+        }
+        var t = document.getElementsByClassName("third-priority");
+        var lt = t.length;
+        for (var i = 0; i < lt; i += 1) {
+          var w = t.item(i);
+          w.style.backgroundColor = "white";
+        }
+        
+         if (elementToReplace == null) {
+          hWIndex = -1;
+        } else {
+          hWIndex = 0;
+        }
+        highlightedWords = getHighlightedWords("second-priority"); 
+        
+        var w = highlightedWords[hWIndex];
+        
+        if (!highlightedWords.includes(elementToReplace.textContent)) {
+          //console.log(w);
+          var l = document.getElementsByClassName("highlight");
+          for (var i = 0; i < l.length; i += 1) {
+            var e = l.item(i);
+            if (e.textContent == w) {
+              elementToReplace = e;
+            }
+          }
+          replaceOriginal(w);
+          replaceSuggestions(elementToReplace);
+        }
+      });
+      
+      $('#p3').on('click', function() {
+        gPriority = "third-priority";
+        filterButtonObj.text('Priority three'); 
+        filterButtonObj.css('background-color', 'yellow')
+        var first = document.getElementsByClassName("first-priority");
+        var lf = first.length;
+        for (var i = 0; i < lf; i += 1) {
+          var w = first.item(i);
+          w.style.backgroundColor = "white";
+        }
+        var s = document.getElementsByClassName("second-priority");
+        var ls = s.length;
+        for (var i = 0; i < ls; i += 1) {
+          var w = s.item(i);
+          w.style.backgroundColor = "white";
+        }
+        var t = document.getElementsByClassName("third-priority");
+        var lt = t.length;
+        for (var i = 0; i < lt; i += 1) {
+          var w = t.item(i);
+          w.style.backgroundColor = colors[priorities[w.textContent]];
+        }
+        
+         if (elementToReplace == null) {
+          hWIndex = -1;
+        } else {
+          hWIndex = 0;
+        }
+        highlightedWords = getHighlightedWords("third-priority"); 
+        
+        var w = highlightedWords[hWIndex];
+        
+        if (!highlightedWords.includes(elementToReplace.textContent)) {
+          //console.log(w);
+          var l = document.getElementsByClassName("highlight");
+          for (var i = 0; i < l.length; i += 1) {
+            var e = l.item(i);
+            if (e.textContent == w) {
+              elementToReplace = e;
+            }
+          }
+          replaceOriginal(w);
+          replaceSuggestions(elementToReplace);
+        }
+      });
+    
+     $('#p0').on('click', function() {
+        gPriority = "zero";
+        filterButtonObj.text('No filter'); 
+        filterButtonObj.css('background-color', 'white')
+       var first = document.getElementsByClassName("first-priority");
+        var lf = first.length;
+        for (var i = 0; i < lf; i += 1) {
+          var w = first.item(i);
+          w.style.backgroundColor = colors[priorities[w.textContent]];;
+        }
+        var s = document.getElementsByClassName("second-priority");
+        var ls = s.length;
+        for (var i = 0; i < ls; i += 1) {
+          var w = s.item(i);
+          w.style.backgroundColor = colors[priorities[w.textContent]];
+        }
+        var t = document.getElementsByClassName("third-priority");
+        var lt = t.length;
+        for (var i = 0; i < lt; i += 1) {
+          var w = t.item(i);
+          w.style.backgroundColor = colors[priorities[w.textContent]];
+        }
+      
+        highlightedWords = getHighlightedWords("highlight");
+        hWIndex = highlightedWords.indexOf(elementToReplace.textContent);
+      });
+    
+    // drop-down menu
+      $('#first').on('click', function() {
+        $('#dropdownMenuButton').text('Children');
+      });
+
+      $('#second').on('click', function() {
+        $('#dropdownMenuButton').text('Teenagers');
+      });
+      
+      $('#third').on('click', function() {
+        $('#dropdownMenuButton').text('General Public');
+      });
+    
+      $(".trigger_popup_fricc").click(function(){
+       $('.hover_bkgr_fricc').show();
+      });
+    
+      $('.hover_bkgr_fricc').click(function(){
+        $('.hover_bkgr_fricc').hide();
+      });
+    
+      $('.popupCloseButton').click(function(){
+        $('.hover_bkgr_fricc').hide();
+      });
+    
+      $('.highlight').click(function(){
+        elementToReplace = this;
+        replaceOriginal(this.textContent);
+        replaceSuggestions(this);     
+        hWIndex = highlightedWords.indexOf(this.textContent);   
+      });
+      /* 
+         List of changes for undo
+            replacement, replaced, priority
+            search priority for textContent matching replacement
+            Change back to replaced
+            Put into list of undos
+         List of undos for redo
+            Same as above
+         Previous/Next
+            Make Previous/Next work with filters
+         */
+    
+      $('#prev').click(function(){
+        
+        if (!(hWIndex <= 0)) {
+          hWIndex -= 1;
+        }
+        var x = gPriority;
+        if (x == "zero") {
+          x = "highlight";
+        }
+        highlightedWords = getHighlightedWords(x);
+        var w = highlightedWords[hWIndex];
+        var l = document.getElementsByClassName("highlight");
+        for (var i = 0; i < l.length; i += 1) {
+          var e = l.item(i);
+          if (e.textContent == w) {
+            elementToReplace = e;
+          }
+        }
+        replaceOriginal(highlightedWords[hWIndex]);
+        replaceSuggestions(elementToReplace);
+        
+        /*
+         if (!(hWIndex <= 0)) {
+          hWIndex -= 1;
+        }
+        */
+      });
+    
+      $('#next').click(function(){
+        
+        if (hWIndex != highlightedWords.length - 1) {
+          hWIndex += 1;
+        }
+        var x = gPriority;
+        if (x == "zero") {
+          x = "highlight";
+        }
+        highlightedWords = getHighlightedWords(x);
+        var w = highlightedWords[hWIndex];
+        console.log(highlightedWords);
+        var l = document.getElementsByClassName("highlight");
+        for (var i = 0; i < l.length; i += 1) {
+          var e = l.item(i);
+          if (e.textContent == w) {
+            elementToReplace = e;
+          }
+        }
+        replaceOriginal(highlightedWords[hWIndex]);
+        replaceSuggestions(elementToReplace);
+        
+        /*
+        if (hWIndex != highlightedWords.length - 1) {
+          hWIndex += 1;
+        }
+        */
+      });
+    
+      $('#undoButton').click(function() {
+        var ch = undo.pop();
+        if (typeof ch == 'undefined') {
+          return;
+        }
+        redo.push(ch);
+        var o = ch[0];
+        var r = ch[1];
+        var l = document.getElementsByClassName("highlight");
+        for (var i = 0; i < l.length; i += 1) {
+          var e = l.item(i);
+          if (e.textContent == r) {
+            e.textContent = o;
+            if (gPriority == "zero" || gPriority == priorities[originalify[o]]) {
+              e.style.backgroundColor = colors[priorities[o]];
+            }
+          }
+        }
+      });
+    
+      $('#redoButton').click(function() {
+        var ch = redo.pop();
+        if (typeof ch == 'undefined') {
+          return;
+        }
+        undo.push(ch);
+        var o = ch[0];
+        var r = ch[1];
+        var l = document.getElementsByClassName("highlight");
+        for (var i = 0; i < l.length; i += 1) {
+          var e = l.item(i);
+          if (e.textContent == o) {
+            e.textContent = r;
+            if (gPriority == "zero" || gPriority == priorities[originalify[r]]) {
+              console.log(colors[priorities[r]]);
+              e.style.backgroundColor = colors[priorities[r]];
+            }
+          }
+        }
+      });
+    
+    $('#logo').click(function() {
+     document.location.href = 'https://CS160finalProjectGroup8-david-lin770443.codeanyapp.com';
+    });
+  
+  function getAudience() {
+    var url = new URL(window.location.href);
+    var a = url.searchParams.get("audience");
+    return a;
+  }
+  
+  function replaceOriginal(word) {
+    
+    $('#original').text(originalify[word]);
+    //console.log(priorities[originalify[word]]);
+    $('#original').css("background-color", colors[priorities[originalify[word]]]);
+    $('#original').click(function() {
+      elementToReplace.textContent = this.textContent;
+      elementToReplace.style.backgroundColor = colors[priorities[this.textContent]];
+    });
+  }
+  
+  /* Generate array of all highlighted words */ 
+  /*
+  function getHighlightedWords() {
+    var highlightClass = "highlight"    
+    var highlightedWords = []
+    var elements = $("." + highlightClass).show();
+    for (var i = 0; i < elements.length; i++) {
+      highlightedWords.push(elements[i].textContentin.replace(/ /g, ''));
+    }
+    return highlightedWords; 
+  }
+  */
+  
+  function getHighlightedWords(priority) {
+    var highlightClass = priority;    
+    var highlightedWords = []
+    var elements = document.getElementsByClassName("highlight");
+    for (var i = 0; i < elements.length; i++) {
+      var w = elements.item(i).textContent;
+      var wo = originalify[w];
+      if (priority == "highlight" || priorities[wo] == priority) {
+        highlightedWords.push(w);
+      }
+    }
+    return highlightedWords; 
+  }
+  
+  
+  
+  /*
+  function getHighlightedColors() {
+    var highlightClass = "highlight"    
+    var highlightedColors = []
+    var elements = $("." + highlightClass).show();
+    for (var i = 0; i < elements.length; i++) {
+      var cL = elements[i].classList; 
+      if (cL.contains("first-priority")) {
+         highlightedColors.push("red");
+      } else if (cL.contains("second-priority")) {
+         highlightedColors.push("orange");
+      } else { //third priority 
+         highlightedColors.push("yellow");
+      }
+    }
+    return highlightedColors; 
+  }
+  */
+  
+  
+  function replaceSuggestions(word) {
+    originalWord = originalify[word.textContent];
+    //console.log(originalWord);
+    $('#sList').empty();
+    var suggestions = rList[originalWord];
+    for (var i = 0; i < suggestions.length; i += 1) {
+      var replacement = suggestions[i];
+      var priority = priorities[replacement];
+      var e = document.createElement('li');
+      var ec = document.createElement('div');
+      ec.textContent = replacement;
+      ec.setAttribute('class', 'suggestion');
+      ec.setAttribute('id', i.toString());
+      e.setAttribute('style', "width:100%");
+      e.appendChild(ec);
+      $('#sList').append(e);
+      $('#'+i.toString()).css("background-color", colors[priority]);
+    }
+    $('.suggestion').click(function() {
+      var o = elementToReplace.textContent;
+      var r = this.textContent;
+      elementToReplace.textContent = this.textContent;
+      elementToReplace.style.backgroundColor = colors[priorities[this.textContent]];
+      undo.push([o, r]);
+      if (redo.length > 0) {
+        redo = [];
+      }
+    });
+  }
+  });
+  
+  gPriority = "zero";
+  elementToReplace = null;
+  colors = {"first-priority": "red", "second-priority":"orange", "third-priority":"yellow","suggested":"lightgreen"};
+  rList = {"generative" : ["able to produce", "procreative"], "constituencies": ["groups"], "epistemologies":["theories of knowledge"],
+          "articulation": ["clarification"]};
+  originalify = {"able to produce":"generative", "procreative":"generative", "generative":"generative", "groups": "constituencies",
+                "constituencies":"constituencies", "epistemologies":"epistemologies", "theories of knowledge": "epistemologies",
+                "articulation":"articulation","clarification":"articulation"};
+  priorities = {"generative":"second-priority", "able to produce":"suggested", "procreative":"suggested","constituencies":"first-priority",
+               "groups":"suggested", "epistemologies":"first-priority", "theories of knowledge":"suggested", "articulation":"third-priority",
+               "clarification":"suggested"};
+  undo = [];
+  redo = [];
+</script>
+</html>

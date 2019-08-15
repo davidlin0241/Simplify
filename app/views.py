@@ -9,3 +9,9 @@ def editor(request):
 
 def home(request):
   return render(request, 'home.html')
+
+def conc(request):
+  return render(request, 'conc.html')
+
+def conc2(request):
+  return render(request, 'conc2.html')
