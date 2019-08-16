@@ -10,4 +10,5 @@ urlpatterns = [
     path('edit/child/', views.child, name="cEditor"),
     path('edit/general/', views.general, name="gEditor"),
     path('edit/teen/', views.teen, name="tEditor"),
+    path('index2/', views.index2, name="index2"),
 ]

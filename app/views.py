@@ -24,3 +24,6 @@ def general(request):
 
 def teen(request):
   return render(request, 'edit/teen.html')
+
+def index2(request):
+  return render(request, 'index2.html')
