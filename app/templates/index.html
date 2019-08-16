@@ -21,7 +21,7 @@
       background-color: lightgreen; /* For browsers that do not support gradients */
       background-image: url("/static/pic2.jpg");
       background-size: cover;
-      background-position: center;
+      background-position: center top;
       
     }
     
@@ -144,7 +144,7 @@
       </div>
     </div>
   </div>
-  <form action="/editor" method="get" id="f">
+  <form action="" method="get" id="f">
   </form>
   
 </body>
@@ -170,7 +170,8 @@
       
          
       document.getElementById("textEd-btn").onclick = function () {
-         
+            var fo = document.getElementById('f');
+            getAction(fo);
             $('#f').append('<input type="text" name="audience" value="'+ $('#default').text() +'">');
             $('#f').submit();
         };
@@ -191,6 +192,18 @@
         //audienceSelected = 1; 
       });
     });
+    
+      function getAction(form) {
+        var s;
+        var t = $('#default').text();
+        if (t == "Children") {
+          form.action = "/edit/child";
+        } else if (t == "Teenagers") {
+          form.action = "/edit/teen";
+        } else {
+          form.action = "/edit/general";
+        }
+      }
 
 </script>
 </html>
