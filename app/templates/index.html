@@ -18,17 +18,18 @@
     
     body {
       height:100%;
-      background-color: lightgreen; /* For browsers that do not support gradients */
-      background-image: url("/static/pic2.jpg");
+     
+      background-image: url("/static/pic4.jpg");
       background-size: cover;
       background-position: center top;
       
     }
     
     .logo {
-      top: 0;
-      left: 0;
       
+      margin-top: 3%;
+      margin-left: 65%;
+  
     }
   
     .title {
@@ -55,6 +56,11 @@
     .center-btns {
       text-align: center;
     }
+    
+    .center-btns1 {
+      margin-top: 11%;
+    }
+
 
     .dropdown-toggle {
       
@@ -87,6 +93,24 @@
       font-family: Arial, Helvetica, sans-serif;
     }
     
+    h1 {
+      
+      
+        font-size: 60px;
+        text-shadow: 0px 4px 20px rgba(0, 0, 0, 0.15);
+        color: white;
+        font-weight:500;
+    }
+    
+    h3 {
+      color: white;
+      margin-left: 5px;
+      margin-top: -1%;
+      
+      font-weight:500;
+    }
+    
+    
     
     
     
@@ -99,50 +123,46 @@
 <body>
   <div class="container-fluid">
      <div row>
-        <div class="col-12">
-          <h1 class="logo"> <img src="{% static 'logo-black.png' %}" alt=":)" style="height:70px;"> </h1>
+        <div class="col-12 textTop" >
+          <h1>
+            Welcome to Simplify!
+          </h1>
+          
+          <h3>
+            make complicated text more understandable for your audience
+          </h3>
        </div>
       </div> 
        <div row>
-        <div class="col-12">
-          <h1 class="title"> Welcome to Simplify!</h1>
-       </div>
-    </div>   
-    <div row>
-        <div class="col-12">
-          <h3 class="description"> turn complicated text into understandable text for your audience!</h3>
-        </div>
-    </div>
-    
-    <div row>
-        <div class="col-12 center-btns">
-          <div class="btn-group">
-            <button class="btn btn-secondary btn-lg dropdown-toggle" id="default" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Please select an audience
-            </button>
-            <div class="dropdown-menu">
-              <a class="dropdown-item" id="first" href="#">Children</a>
-              <a class="dropdown-item" id="second" href="#">Teenagers</a>
-              <a class="dropdown-item" id="third" href="#">General Public</a>
+    <div row class="center-btns1">
+      <div row>
+          <div class="col-12 center-btns">
+            <div class="btn-group">
+              <button class="btn btn-secondary btn-lg dropdown-toggle" id="default" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Please select an audience
+              </button>
+              <div class="dropdown-menu">
+                <a class="dropdown-item" id="first" href="#">Children</a>
+                <a class="dropdown-item" id="second" href="#">Teenagers</a>
+                <a class="dropdown-item" id="third" href="#">General Public</a>
+              </div>
             </div>
           </div>
+      </div>
+
+      <div row>
+        <div class="col-12 center-btns">
+           <button type="button" class="btn btn-secondary" id="textEd-btn">Go to text editor</button>
         </div>
-    </div>
-    
-    <div row>
-      <div class="col-12 center-btns">
-         <button type="button" class="btn btn-secondary" id="textEd-btn">Go to text editor</button>
       </div>
     </div>
     
-     <div row>
-      <div class="col-12" style="text-align: center">
-        <h4> Select an audience, and then click on "Go to the text editor" </h4>
-      </div>
-      <div class="col-12" style="text-align: center">
-        <h5 style="border-bottom-style:none"> You can always change your audience later </h5>
-      </div>
-    </div>
+     <div row class="simplify">
+        <div class="col-12">
+          <h1 class="logo"> <img src="{% static 'logo-white.png' %}" alt=":)" style="width:63%; margin-bottom: 10%; margin-top: 6%"> </h1>
+       </div>
+     </div> 
+         
   </div>
   <form action="" method="get" id="f">
   </form>

@@ -129,13 +129,17 @@
     }
     
     .btn-primary {
-      border: 2px solid #299897 !important;
+      /* border: 2px solid #299897 !important; */
+      border: 2px solid #F3F3F3 !important;
       background-color: white; 
       color: black;
     }
     .btn-secondary {
-      border: 2px solid #299897 !important;
+       /* border: 2px solid #299897 !important; */
+      border: 2px solid #F3F3F3 !important;
     }
+  
+   
     
     #help {
       color:white;
@@ -161,14 +165,16 @@
       position:fixed;
       text-align:center;
       top:0;
-      width:100%;
+      width:94%;
       z-index:10000;
+      
     }
     
     .hover_bkgr_fricc .helper{
         display:inline-block;
         height:100%;
         vertical-align:middle;
+        
     }
     
     .hover_bkgr_fricc > div {
@@ -213,6 +219,60 @@
     }
     /* Popup box END */
     
+    #filterButton {
+      background-color: white;
+      margin-bottom: 30%;
+    }
+    
+    #filterButton:hover {
+      background-color: #DFDFDF !important;
+    }
+    
+    #dropdownMenuButton:hover {
+      background-color: #F3F3F3 !important;
+      
+    }
+    
+    #dropdownMenuButton{
+    
+      color: #299897 !important;
+    }
+    
+    #undoButton:hover {
+      background-color: #F3F3F3 !important;
+    }
+    
+    #redoButton:hover {
+      background-color: #F3F3F3 !important;
+    }
+    
+    #undoButton:active {
+      background-color: #EEEEEE !important;
+    }
+    
+    #redoButton:active {
+      background-color: #EEEEEE !important;
+    }
+    
+     #help:hover {
+      background-color: #F3F3F3 !important;
+      color: black;
+    }
+
+    .btn {
+      color:#299897;
+    }
+    
+    .btn:hover {
+      background-color: #F3F3F3;
+    }
+    
+    .btn:active {
+      background-color: #EEEEEE !important;
+    }
+    
+   
+    
 	</style>
 
 </head>
@@ -225,13 +285,13 @@
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
       </li>
-      <li class="nav-item active" style="padding-left:20em;">
-        <button class= "btn" id="undoButton" style="background-color:white !important; border:2px solid #ebebeb;">
+      <li class="nav-item active" style="margin-left:80%;">
+        <button class= "btn" id="undoButton" style="background-color:white; border:2px solid #ebebeb;">
           <i class="fas fa-undo" style="font-size:25px;color:black;"></i>
         </button>     
       </li>
       <li class="nav-item active">
-        <button class = "btn" id="redoButton"style="background-color:white !important; border:2px solid #ebebeb;">
+        <button class = "btn" id="redoButton"style="background-color:white; border:2px solid #ebebeb;">
           <i class="fas fa-redo" style="font-size:25px;color:black;"></i>
         </button>
       </li>
@@ -240,15 +300,21 @@
           <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Dropdown button
           </button>
-          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton"> 
+
+             <!-- 
              <a class="dropdown-item" id="first" href="http://cs160finalprojectgroup8-brendanleahy778216.codeanyapp.com:3000/edit/child/?audience=Children">Children</a>
              <a class="dropdown-item" id="second" href="http://cs160finalprojectgroup8-brendanleahy778216.codeanyapp.com:3000/edit/teen/?audience=Teenagers">Teenagers</a>
              <a class="dropdown-item" id="third" href="http://cs160finalprojectgroup8-brendanleahy778216.codeanyapp.com:3000/edit/general/?audience=General+Public">General Public</a>
+             -->
+             <a class="dropdown-item" id="first" href="http://cs160finalprojectgroup8-david-lin770443.codeanyapp.com:3000/edit/child/?audience=Children">Children</a>
+             <a class="dropdown-item" id="second" href="http://cs160finalprojectgroup8-david-lin770443.codeanyapp.com:3000/edit/teen/?audience=Teenagers">Teenagers</a>
+             <a class="dropdown-item" id="third" href="http://cs160finalprojectgroup8-david-lin770443.codeanyapp.com:3000/edit/general/?audience=General+Public">General Public</a>
           </div>
         </div>
   
     <a class="trigger_popup_fricc">
-      <button class="btn btn-primary" id = "help" style="background-color: #299897 !important;">
+      <button class="btn btn-primary" id = "help" style="background-color: #299897;">
         Help
       </button>
     </a>
@@ -298,14 +364,14 @@
       to respond to global <p class="highlight third-priority">connectivity</p> and movement.
     </div>
     <div class="sidebar container">
-      <div class="row align-items-center" style="height:10%;">
+      <div class="row align-items-center" style="height:10%; margin-top: 2%">
         <div class="col">
-          <button class="btn btn-primary" id="prev">
+          <button class="btn btn-primary" id="prev" style="color:#299897">
             Previous word
           </button>
         </div>
         <div class="col" align="right">
-          <button class="btn btn-primary" id="next">
+          <button class="btn btn-primary" id="next" style="color:#299897">
             Next word
           </button>
         </div>
@@ -318,20 +384,20 @@
         </div>
       </div>
       <div class="row" style="height:10%;">
-        <div class="col" style = "text-align:center; font-size:30px;">
+        <div class="col" style = "text-align:center; font-size:30px; margin-top: 10%">
           Suggestions:
         </div>
       </div>
       <div class="row" style="height:60%;">
         <div class="col">
-          <ul id="sList" style="list-style-type:none;text-align:center;padding-left:0;font-size:24px;">
+          <ul id="sList" style="list-style-type:none;text-align:center;padding-left:0;font-size:24px; margin-top: 5%">
             
           </ul>
         </div>
       </div>
       <div class="row align-items-center justify-content-center" style="height:10%;">
         <div class="column dropup">
-          <button type="button" id="filterButton" align="center" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <button type="button" style="color:#299897" id="filterButton" align="center" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Select filter
           </button>
           <div class="dropdown-menu" aria-labelledby="filterButton">
@@ -678,6 +744,12 @@
     $('#logo').click(function() {
      document.location.href = 'https://CS160finalProjectGroup8-david-lin770443.codeanyapp.com';
     });
+    
+    
+    
+    
+
+   
   
   function getAudience() {
     var url = new URL(window.location.href);
